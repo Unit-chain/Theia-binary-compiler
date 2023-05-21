@@ -8,6 +8,7 @@
 #include "BytecodeStream.h"
 #include "SystemIdentifier.h"
 #include "utility"
+#include "Opcodes.h"
 
 typedef unsigned char uchar;
 
