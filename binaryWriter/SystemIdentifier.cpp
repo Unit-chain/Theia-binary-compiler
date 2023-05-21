@@ -6,26 +6,22 @@
 
 
 SystemIdentifier::SystemIdentifier() {
-    OSFlag o;
+    OSFlag os;
     #ifdef _WIN32
-        this->os = WINDOWS;
+        os = WINDOWS;
     #elif __APPLE__
-        o = MACOS;
+        os = MACOS;
     #elif __linux__
-        this->os = LINUX;
+        os = LINUX;
     #else
-        this->os = UNKNOWN;
+        os = UNKNOWN;
     #endif
-    ushort flag = (static_cast<uchar>(o) | static_cast<uchar>(getProcessorArchitecture()));
-    printf("Flag: %d\n", flag);
-    this->system = flag;
+    this->system = static_cast<uchar>(os) | static_cast<uchar>(getProcessorArchitecture());
 }
 
 CPUFlag SystemIdentifier::getProcessorArchitecture() {
 #if defined(_WIN32)
-#if defined(_WIN64)
     return X86_64;
-#endif
 #elif defined(__APPLE__) && defined(__MACH__)
 #include <sys/sysctl.h>
     size_t len = 0;
@@ -53,4 +49,11 @@ CPUFlag SystemIdentifier::getProcessorArchitecture() {
 #else
     return X86S;
 #endif
+}
+
+SystemIdentifier& SystemIdentifier::operator=(const SystemIdentifier& other) {
+    if (this != &other) {
+        this->system = other.system;
+    }
+    return *this;
 }

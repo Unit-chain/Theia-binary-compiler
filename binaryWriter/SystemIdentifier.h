@@ -53,6 +53,8 @@ public:
     explicit SystemIdentifier();
 public:
     uchar system;
+public:
+    SystemIdentifier& operator=(const SystemIdentifier& other);
 private:
     static CPUFlag getProcessorArchitecture();
 };
