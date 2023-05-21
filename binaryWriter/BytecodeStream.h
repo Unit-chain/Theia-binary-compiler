@@ -12,7 +12,6 @@ private:
     std::size_t currentPosition;
 public:
     explicit BytecodeStream(std::string& bytecode) : bytecode(bytecode), currentPosition(0) {}
-    BytecodeStream();
 public:
     [[nodiscard]] bool hasMoreBytes() const;
     unsigned char readByte();

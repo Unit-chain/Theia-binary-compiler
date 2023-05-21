@@ -8,7 +8,5 @@
 #include "SystemIdentifier.h"
 
 int main() {
-    SystemIdentifier si = SystemIdentifier();
-    std::cout << "System: 0x" << std::hex << si.system << std::endl;
     return 0;
 }
