@@ -4,6 +4,7 @@
 
 #ifndef BINARYWRITER_ASMGENERATOR_H
 #define BINARYWRITER_ASMGENERATOR_H
+
 #include "memory"
 #include "BytecodeStream.h"
 #include "SystemIdentifier.h"
@@ -12,8 +13,7 @@
 
 typedef unsigned char uchar;
 
-enum class State
-{
+enum class State {
     Idle,
     Branching,
     Logic,
@@ -25,15 +25,13 @@ enum class State
     Array
 };
 
-enum Sign : uchar
-{
+enum Sign : uchar {
     unsign = 0x10,
     sign = 0x20
 };
 
 ///@brief size in bytes!!! (not bits)!!!
-enum Argument : uchar
-{
+enum Argument : uchar {
     i1 = 0x01,  // uint8_t
     i2 = 0x02,  // uint16_t
     i4 = 0x03,  // uint32_t
@@ -50,8 +48,7 @@ enum Argument : uchar
 //     return (Argument) (symbol & 0x0F);
 // }
 
-class ASMGenerator
-{
+class ASMGenerator {
 public:
     virtual ~ASMGenerator();
 
@@ -59,6 +56,7 @@ public:
 
 public:
     virtual void write() = 0;
+
     void setBs(BytecodeStream &bs);
 
 protected:
@@ -74,8 +72,7 @@ protected:
     //    virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
-class ARM64ASMGenerator : public ASMGenerator
-{
+class ARM64ASMGenerator : public ASMGenerator {
 public:
     explicit ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 
@@ -237,8 +234,7 @@ private:
     // virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
-class X86ASMGenerator : public ASMGenerator
-{
+class X86ASMGenerator : public ASMGenerator {
 public:
     explicit X86ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 

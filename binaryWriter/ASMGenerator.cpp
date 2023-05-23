@@ -5,9 +5,7 @@
 
 ASMGenerator::ASMGenerator(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {}
 
-ASMGenerator::~ASMGenerator() {
-    fclose(this->fp);
-}
+ASMGenerator::~ASMGenerator() {}
 
 ARM64ASMGenerator::ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
