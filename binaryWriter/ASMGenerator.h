@@ -2,8 +2,8 @@
 // Created by Kirill Zhukov on 21.05.2023.
 //
 
-#ifndef BINARYWRITER_BINARYWRITER_H
-#define BINARYWRITER_BINARYWRITER_H
+#ifndef BINARYWRITER_ASMGENERATOR_H
+#define BINARYWRITER_ASMGENERATOR_H
 #include "memory"
 #include "BytecodeStream.h"
 #include "SystemIdentifier.h"
@@ -47,17 +47,16 @@ enum Argument : uchar {
 //    return (Argument) (symbol & 0x0F);
 //}
 
-class BinaryWriter {
+class ASMGenerator {
 public:
-    virtual ~BinaryWriter();
+    virtual ~ASMGenerator();
 
-    BinaryWriter(char* path, BytecodeStream &bytecodeStream);
+    ASMGenerator(char* path, BytecodeStream &bytecodeStream);
 public:
     virtual void write() = 0;
     void setBs(BytecodeStream &bs);
 protected:
     std::string path;
-    FILE *fp;
     State currentState;
     BytecodeStream bs;
 protected:
@@ -68,9 +67,9 @@ protected:
 //    virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
-class ARM64BinaryWriter : public BinaryWriter {
+class ARM64ASMGenerator : public ASMGenerator {
 public:
-    explicit ARM64BinaryWriter(char *path, BytecodeStream &bytecodeStream);
+    explicit ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 public:
     void write() override;
 private:
@@ -85,9 +84,9 @@ private:
 //    ALWAYS_INLINE std::shared_ptr<char> astorea() override;
 };
 
-class X86BinaryWriter : public BinaryWriter {
+class X86ASMGenerator : public ASMGenerator {
 public:
-    explicit X86BinaryWriter(char *path, BytecodeStream &bytecodeStream);
+    explicit X86ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 public:
     void write() override; // Implement this
 private:
@@ -99,4 +98,4 @@ private:
 //    ALWAYS_INLINE std::shared_ptr<char> astorea() override;
 };
 
-#endif //BINARYWRITER_BINARYWRITER_H
+#endif //BINARYWRITER_ASMGENERATOR_H

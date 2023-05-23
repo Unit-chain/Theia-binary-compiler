@@ -1,19 +1,17 @@
 //
 // Created by Kirill Zhukov on 21.05.2023.
 //
-#include "BinaryWriter.h"
+#include "ASMGenerator.h"
 
-BinaryWriter::BinaryWriter(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {
-    this->fp = fopen(this->path.c_str(), "wb");
-}
+ASMGenerator::ASMGenerator(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {}
 
-BinaryWriter::~BinaryWriter() {
+ASMGenerator::~ASMGenerator() {
     fclose(this->fp);
 }
 
-ARM64BinaryWriter::ARM64BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
+ARM64ASMGenerator::ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
-void ARM64BinaryWriter::write() {
+void ARM64ASMGenerator::write() {
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
@@ -465,19 +463,19 @@ void ARM64BinaryWriter::write() {
     }
 }
 
-//std::shared_ptr<char> ARM64BinaryWriter::iadd() {
+//std::shared_ptr<char> ARM64ASMGenerator::iadd() {
 //    char *iadd = (char *) std::malloc(8);
 //    iadd = (char *) "add x0, x1, x1\n";
 //    return std::shared_ptr<char>(iadd);
 //}
 
-std::shared_ptr<char> ARM64BinaryWriter::stop() {
+std::shared_ptr<char> ARM64ASMGenerator::stop() {
     return std::shared_ptr<char>();
 }
 
-X86BinaryWriter::X86BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
+X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
-void X86BinaryWriter::write() {
+void X86ASMGenerator::write() {
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
@@ -929,6 +927,6 @@ void X86BinaryWriter::write() {
     }
 }
 
-std::shared_ptr<char> X86BinaryWriter::stop() {
+std::shared_ptr<char> X86ASMGenerator::stop() {
     return std::shared_ptr<char>();
 }
