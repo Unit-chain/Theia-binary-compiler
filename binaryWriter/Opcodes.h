@@ -6,8 +6,8 @@
 #define BINARYWRITER_OPCODES_H
 
 ///@brief opcodes
-enum {
-    STOP,
+enum : unsigned char {
+    STOP = 0x00,
     GO_TO,
     SWAPREF,
     IADD,

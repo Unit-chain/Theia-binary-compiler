@@ -7,19 +7,19 @@
 #include "string"
 #include "iostream"
 
-#ifdef __APPLE__
+#if defined(__APPLE__)
 
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #define ALWAYS_INLINE __attribute__((always_inline))
 
-#elifdef __linux__
+#elif defined(__linux__)
 
 #include <sys/utsname.h>
 #define ALWAYS_INLINE __attribute__((always_inline))
 
-#elifdef _WIN32
+#elif defined(_WIN32)
 
 #define ALWAYS_INLINE __forceinline
 

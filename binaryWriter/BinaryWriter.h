@@ -39,25 +39,33 @@ enum Argument : uchar {
     i32 = 0x09  // uint256_t
 };
 
-ALWAYS_INLINE uchar isSigned(unsigned char symbol) {
-    return (Sign) (symbol & 0xF0);
-}
-
-ALWAYS_INLINE Argument getArg(unsigned char symbol) {
-    return (Argument) (symbol & 0x0F);
-}
+//ALWAYS_INLINE uchar isSigned(unsigned char symbol) {
+//    return (Sign) (symbol & 0xF0);
+//}
+//
+//ALWAYS_INLINE Argument getArg(unsigned char symbol) {
+//    return (Argument) (symbol & 0x0F);
+//}
 
 class BinaryWriter {
 public:
+    virtual ~BinaryWriter();
+
     BinaryWriter(char* path, BytecodeStream &bytecodeStream);
 public:
     virtual void write() = 0;
     void setBs(BytecodeStream &bs);
 protected:
-    std::shared_ptr<char> path;
-    std::unique_ptr<FILE> fp;
+    std::string path;
+    FILE *fp;
     State currentState;
     BytecodeStream bs;
+protected:
+    virtual ALWAYS_INLINE std::shared_ptr<char> stop() = 0;
+//    virtual ALWAYS_INLINE std::shared_ptr<char> go_to() = 0;
+//    virtual ALWAYS_INLINE std::shared_ptr<char> swap() = 0;
+//    virtual ALWAYS_INLINE std::shared_ptr<char> iadd() = 0;
+//    virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
 class ARM64BinaryWriter : public BinaryWriter {
@@ -67,14 +75,14 @@ public:
     void write() override;
 private:
     int argument; ///@brief (Argument | Sign)
-    ushort loadedArgumentBytes;
+    uchar loadedArgumentBytes;
 private:
     ///@brief ALWAYS_INLINE means that function's body will replace invocation place
-    ALWAYS_INLINE std::shared_ptr<char> stop();
-    ALWAYS_INLINE std::shared_ptr<char> go_to();
-    ALWAYS_INLINE std::shared_ptr<char> swap();
-    ALWAYS_INLINE std::shared_ptr<char> iadd();
-    ALWAYS_INLINE std::shared_ptr<char> astorea();
+    ALWAYS_INLINE std::shared_ptr<char> stop() override;
+//    ALWAYS_INLINE std::shared_ptr<char> go_to() override;
+//    ALWAYS_INLINE std::shared_ptr<char> swap() override;
+//    ALWAYS_INLINE std::shared_ptr<char> iadd() override;
+//    ALWAYS_INLINE std::shared_ptr<char> astorea() override;
 };
 
 class X86BinaryWriter : public BinaryWriter {
@@ -84,11 +92,11 @@ public:
     void write() override; // Implement this
 private:
     ///@brief ALWAYS_INLINE means that function's body will replace invocation place
-    ALWAYS_INLINE std::shared_ptr<char> stop();
-    ALWAYS_INLINE std::shared_ptr<char> go_to();
-    ALWAYS_INLINE std::shared_ptr<char> swap();
-    ALWAYS_INLINE std::shared_ptr<char> iadd();
-    ALWAYS_INLINE std::shared_ptr<char> astorea();
+    ALWAYS_INLINE std::shared_ptr<char> stop() override;
+//    ALWAYS_INLINE std::shared_ptr<char> go_to() override;
+//    ALWAYS_INLINE std::shared_ptr<char> swap() override;
+//    ALWAYS_INLINE std::shared_ptr<char> iadd() override;
+//    ALWAYS_INLINE std::shared_ptr<char> astorea() override;
 };
 
 #endif //BINARYWRITER_BINARYWRITER_H

@@ -4,8 +4,11 @@
 #include "BinaryWriter.h"
 
 BinaryWriter::BinaryWriter(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {
-    FILE *f = fopen(this->path.get(), "wb");
-    this->fp = std::unique_ptr<FILE>(f);
+    this->fp = fopen(this->path.c_str(), "wb");
+}
+
+BinaryWriter::~BinaryWriter() {
+    fclose(this->fp);
 }
 
 ARM64BinaryWriter::ARM64BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
@@ -462,10 +465,14 @@ void ARM64BinaryWriter::write() {
     }
 }
 
-std::shared_ptr<char> ARM64BinaryWriter::iadd() {
-    char *iadd = (char *) std::malloc(8);
-    iadd = (char *) "add x0, x1, x1\n";
-    return std::shared_ptr<char>(iadd);
+//std::shared_ptr<char> ARM64BinaryWriter::iadd() {
+//    char *iadd = (char *) std::malloc(8);
+//    iadd = (char *) "add x0, x1, x1\n";
+//    return std::shared_ptr<char>(iadd);
+//}
+
+std::shared_ptr<char> ARM64BinaryWriter::stop() {
+    return std::shared_ptr<char>();
 }
 
 X86BinaryWriter::X86BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
@@ -920,4 +927,8 @@ void X86BinaryWriter::write() {
                 break;
         }
     }
+}
+
+std::shared_ptr<char> X86BinaryWriter::stop() {
+    return std::shared_ptr<char>();
 }
