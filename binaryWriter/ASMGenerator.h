@@ -50,21 +50,13 @@ enum Argument : uchar
 //     return (Argument) (symbol & 0x0F);
 // }
 
-<<<<<<< HEAD:binaryWriter/ASMGenerator.h
-class ASMGenerator {
-=======
-class BinaryWriter
+class ASMGenerator
 {
->>>>>>> merge-branch:binaryWriter/BinaryWriter.h
 public:
     virtual ~ASMGenerator();
 
-<<<<<<< HEAD:binaryWriter/ASMGenerator.h
-    ASMGenerator(char* path, BytecodeStream &bytecodeStream);
-=======
-    BinaryWriter(char *path, BytecodeStream &bytecodeStream);
+    ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 
->>>>>>> merge-branch:binaryWriter/BinaryWriter.h
 public:
     virtual void write() = 0;
     void setBs(BytecodeStream &bs);
@@ -82,17 +74,11 @@ protected:
     //    virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
-<<<<<<< HEAD:binaryWriter/ASMGenerator.h
-class ARM64ASMGenerator : public ASMGenerator {
-public:
-    explicit ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream);
-=======
-class ARM64BinaryWriter : public BinaryWriter
+class ARM64ASMGenerator : public ASMGenerator
 {
 public:
-    explicit ARM64BinaryWriter(char *path, BytecodeStream &bytecodeStream);
+    explicit ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 
->>>>>>> merge-branch:binaryWriter/BinaryWriter.h
 public:
     void write() override;
 
@@ -251,17 +237,11 @@ private:
     // virtual ALWAYS_INLINE std::shared_ptr<char> astorea() = 0;
 };
 
-<<<<<<< HEAD:binaryWriter/ASMGenerator.h
-class X86ASMGenerator : public ASMGenerator {
-public:
-    explicit X86ASMGenerator(char *path, BytecodeStream &bytecodeStream);
-=======
-class X86BinaryWriter : public BinaryWriter
+class X86ASMGenerator : public ASMGenerator
 {
 public:
-    explicit X86BinaryWriter(char *path, BytecodeStream &bytecodeStream);
+    explicit X86ASMGenerator(char *path, BytecodeStream &bytecodeStream);
 
->>>>>>> merge-branch:binaryWriter/BinaryWriter.h
 public:
     void write() override; // Implement this
 private:
@@ -415,8 +395,4 @@ private:
     // ALWAYS_INLINE std::shared_ptr<char> astorea() override;
 };
 
-<<<<<<< HEAD:binaryWriter/ASMGenerator.h
-#endif //BINARYWRITER_ASMGENERATOR_H
-=======
-#endif // BINARYWRITER_BINARYWRITER_H
->>>>>>> merge-branch:binaryWriter/BinaryWriter.h
+#endif // BINARYWRITER_ASMGENERATOR_H
