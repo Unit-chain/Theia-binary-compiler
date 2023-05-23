@@ -7,6 +7,7 @@
 #endif
 #include "SystemIdentifier.h"
 #include "ASMGenerator.h"
+#include <mach-o/loader.h>
 
 int main() {
     std::string tst = "wadawd";
