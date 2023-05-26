@@ -467,8 +467,8 @@ void ARM64ASMGenerator::write() {
 //    return std::shared_ptr<char>(iadd);
 //}
 
-std::shared_ptr<char> ARM64ASMGenerator::stop() {
-    return std::shared_ptr<char>();
+void ARM64ASMGenerator::stop() {
+    return;
 }
 
 X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
@@ -925,6 +925,6 @@ void X86ASMGenerator::write() {
     }
 }
 
-std::shared_ptr<char> X86ASMGenerator::stop() {
-    return std::shared_ptr<char>();
+void X86ASMGenerator::stop() {
+    return;
 }
