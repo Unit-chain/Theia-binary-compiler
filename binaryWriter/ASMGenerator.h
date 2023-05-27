@@ -11,6 +11,8 @@
 #include "utility"
 #include "Opcodes.h"
 
+#define STACKSIZE 8
+
 typedef unsigned char uchar;
 
 enum class State {
@@ -67,8 +69,8 @@ protected:
 
 protected:
     virtual ALWAYS_INLINE void stop() = 0;
-    //    virtual ALWAYS_INLINE void go_to() = 0;
-    //    virtual ALWAYS_INLINE void swapref() = 0;
+    virtual ALWAYS_INLINE void go_to() = 0;
+    virtual ALWAYS_INLINE void swapref() = 0;
     //    virtual ALWAYS_INLINE void iadd() = 0;
     //    virtual ALWAYS_INLINE void isub() = 0;
     //    virtual ALWAYS_INLINE void idivide() = 0;
@@ -387,8 +389,8 @@ public:
 private:
     ///@brief ALWAYS_INLINE means that function's body will replace invocation place
     ALWAYS_INLINE void stop() override;
-    //    ALWAYS_INLINE void go_to() override;
-    //    ALWAYS_INLINE void swapref() override;
+    ALWAYS_INLINE void go_to() override;
+    ALWAYS_INLINE void swapref() override;
     //    ALWAYS_INLINE void iadd() override;
     //    ALWAYS_INLINE void isub() override;
     //    ALWAYS_INLINE void idivide() override;
