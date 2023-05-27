@@ -475,15 +475,40 @@ X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : A
 
 void X86ASMGenerator::write() {
 #if defined(_WIN32)
-    buffer.append("global main\n"
+    buffer.append(
+        "section .data\n"
+        // db: Define Byte - allocates 1 byte of memory.
+        // dw: Define Word - allocates 2 bytes (16 bits) of memory.
+        // dd: Define Doubleword - allocates 4 bytes (32 bits) of memory.
+        // dq: Define Quadword - allocates 8 bytes (64 bits) of memory.
+        // dt: Define Ten Bytes - allocates 10 bytes of memory.
+        // ddq: Define Double Quadword - allocates 16 bytes (128 bits) of memory.
+        // do: Define Octword - allocates 32 bytes (256 bits) of memory.
+        // dy: Define Yottabyte - allocates 256 bytes (2048 bits) of memory.
+        "\tstack db " + std::to_string(STACKSIZE) + "dup(?)\n\n"
+
+        "section .text\n"
+        "global main\n"
         "extern ExitProcess\n\n\n"
 
         "section .text\n"
         "main:\n");
 #elif defined(__linux__)
-    buffer.append("global main\n"
+    buffer.append(
+        "section .data\n"
+        // db: Define Byte - allocates 1 byte of memory.
+        // dw: Define Word - allocates 2 bytes (16 bits) of memory.
+        // dd: Define Doubleword - allocates 4 bytes (32 bits) of memory.
+        // dq: Define Quadword - allocates 8 bytes (64 bits) of memory.
+        // dt: Define Ten Bytes - allocates 10 bytes of memory.
+        // ddq: Define Double Quadword - allocates 16 bytes (128 bits) of memory.
+        // do: Define Octword - allocates 32 bytes (256 bits) of memory.
+        // dy: Define Yottabyte - allocates 256 bytes (2048 bits) of memory.
+        "\tstack db " + std::to_string(STACKSIZE) + "dup(?)\n\n"
 
         "section .text\n"
+        "global main\n"
+
         "main:\n");
 #endif
     while (this->bs.hasMoreBytes()) {
@@ -493,10 +518,10 @@ void X86ASMGenerator::write() {
                 X86ASMGenerator::stop();
                 break;
             case GO_TO:
-                // обработка GO_TO
+                X86ASMGenerator::go_to();
                 break;
             case SWAPREF:
-                // обработка SWAPREF
+                X86ASMGenerator::swapref();
                 break;
             case IADD:
                 // обработка IADD
@@ -942,11 +967,31 @@ void X86ASMGenerator::stop() {
     buffer.append("\txor rax, rax\n"
         "\tcall ExitProcess\n");
 #elif defined(__linux__)
-    buffer.append("\tmov eax, 60\n"
+    buffer.append("\tmov eax, 0x60\n"
         "\txor edi, edi\n"
         "\tsyscall\n")
 #endif
         return;
+}
+
+void X86ASMGenerator::go_to()
+{
+    buffer.append("\tjmp ");
+    uint8_t offset = bs.readByte();
+    buffer.append("\t$+"+std::to_string(offset)+"\n");
+}
+
+void X86ASMGenerator::swapref()
+{
+    uint8_t first = STACKSIZE*bs.readByte();
+    uint8_t second = STACKSIZE*bs.readByte();
+    //depends of size or registers might need to change e**(32 bits) to r**(64 bits)
+    buffer.append("\tmov esi, stack\n");
+    buffer.append("\tmov eax, [esi+" + std::to_string(first) + "]\n");
+    buffer.append("\tmov ebx, [esi+" + std::to_string(second) + "]\n");
+    buffer.append("xchg eax, ebx");
+    buffer.append("\tmov [esi+" + std::to_string(first) + "], eax\n");
+    buffer.append("\tmov [esi+" + std::to_string(second) + "], ebx\n");
 }
 
 void X86ASMGenerator::print() {
