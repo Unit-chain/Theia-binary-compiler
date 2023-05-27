@@ -7,11 +7,12 @@
 #endif
 #include "SystemIdentifier.h"
 #include "ASMGenerator.h"
-#include <mach-o/loader.h>
 
 int main() {
-    std::string tst = "wadawd";
+    std::string tst = "00";
     BytecodeStream bytecodeStream(tst);
-    ARM64ASMGenerator binaryWriter = ARM64ASMGenerator(tst.data(), bytecodeStream);
+    X86ASMGenerator binaryWriter = X86ASMGenerator(tst.data(), bytecodeStream);
+    binaryWriter.write();
+    binaryWriter.print();
     return 0;
 }

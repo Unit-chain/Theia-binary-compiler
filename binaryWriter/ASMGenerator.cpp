@@ -474,11 +474,23 @@ void ARM64ASMGenerator::stop() {
 X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
 void X86ASMGenerator::write() {
+#if defined(_WIN32)
+    buffer.append("global main\n"
+        "extern ExitProcess\n"
+
+        "section .text\n"
+        "main:\n");
+#elif defined(__linux__)
+    buffer.append("global main\n"
+
+        "section .text\n"
+        "main:\n");
+#endif
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
             case STOP:
-                // обработка STOP
+                X86ASMGenerator::stop();
                 break;
             case GO_TO:
                 // обработка GO_TO
@@ -926,5 +938,16 @@ void X86ASMGenerator::write() {
 }
 
 void X86ASMGenerator::stop() {
-    return;
+#if defined(_WIN32)
+    buffer.append("\txor eax, eax\n");
+#elif defined(__linux__)
+    buffer.append("\tmov eax, 60\n"
+        "\txor edi, edi\n"
+        "\tsyscall\n")
+#endif
+        return;
+}
+
+void X86ASMGenerator::print() {
+    printf("asm: %s", this->buffer);
 }

@@ -8,11 +8,20 @@ bool BytecodeStream::hasMoreBytes() const {
     return this->currentPosition < this->bytecode.size();
 }
 
+// unsigned char BytecodeStream::readByte() {
+//     if (this->currentPosition >= this->bytecode.size()) {
+//         throw std::out_of_range("No more bytes to read.");
+//     }
+//     return this->bytecode[this->currentPosition++];
+// }
+
 unsigned char BytecodeStream::readByte() {
-    if (this->currentPosition >= this->bytecode.size()) {
+    if (this->currentPosition + 2 > this->bytecode.size()) {
         throw std::out_of_range("No more bytes to read.");
     }
-    return this->bytecode[this->currentPosition++];
+    std::string byteStr = this->bytecode.substr(this->currentPosition, 2);
+    this->currentPosition += 2;
+    return static_cast<unsigned char>(std::stoul(byteStr, nullptr, 16));
 }
 
 std::string BytecodeStream::readBytes(std::size_t count) {
@@ -31,7 +40,7 @@ uint16_t BytecodeStream::readUInt16() {
     }
 
     std::uint16_t value = (static_cast<std::uint16_t>(bytecode[currentPosition]) << 8) |
-                          static_cast<std::uint16_t>(bytecode[currentPosition + 1]);
+        static_cast<std::uint16_t>(bytecode[currentPosition + 1]);
     currentPosition += 2;
     return value;
 }
@@ -42,9 +51,9 @@ uint32_t BytecodeStream::readUInt32() {
     }
 
     std::uint32_t value = (static_cast<std::uint32_t>(bytecode[currentPosition]) << 24) |
-                          (static_cast<std::uint32_t>(bytecode[currentPosition + 1]) << 16) |
-                          (static_cast<std::uint32_t>(bytecode[currentPosition + 2]) << 8) |
-                          static_cast<std::uint32_t>(bytecode[currentPosition + 3]);
+        (static_cast<std::uint32_t>(bytecode[currentPosition + 1]) << 16) |
+        (static_cast<std::uint32_t>(bytecode[currentPosition + 2]) << 8) |
+        static_cast<std::uint32_t>(bytecode[currentPosition + 3]);
     currentPosition += 4;
     return value;
 }
