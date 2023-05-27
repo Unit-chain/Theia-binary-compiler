@@ -5,6 +5,7 @@
 #ifndef BINARYWRITER_BYTECODESTREAM_H
 #define BINARYWRITER_BYTECODESTREAM_H
 #include "string"
+#include "stdexcept"
 
 class BytecodeStream {
 private:

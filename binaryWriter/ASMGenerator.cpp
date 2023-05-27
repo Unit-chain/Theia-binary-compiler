@@ -1,16 +1,15 @@
 //
 // Created by Kirill Zhukov on 21.05.2023.
 //
-#include "BinaryWriter.h"
+#include "ASMGenerator.h"
 
-BinaryWriter::BinaryWriter(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {
-    FILE *f = fopen(this->path.get(), "wb");
-    this->fp = std::unique_ptr<FILE>(f);
-}
+ASMGenerator::ASMGenerator(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {}
 
-ARM64BinaryWriter::ARM64BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
+ASMGenerator::~ASMGenerator() {}
 
-void ARM64BinaryWriter::write() {
+ARM64ASMGenerator::ARM64ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
+
+void ARM64ASMGenerator::write() {
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
@@ -462,20 +461,36 @@ void ARM64BinaryWriter::write() {
     }
 }
 
-std::shared_ptr<char> ARM64BinaryWriter::iadd() {
-    char *iadd = (char *) std::malloc(8);
-    iadd = (char *) "add x0, x1, x1\n";
-    return std::shared_ptr<char>(iadd);
+//std::shared_ptr<char> ARM64ASMGenerator::iadd() {
+//    char *iadd = (char *) std::malloc(8);
+//    iadd = (char *) "add x0, x1, x1\n";
+//    return std::shared_ptr<char>(iadd);
+//}
+
+void ARM64ASMGenerator::stop() {
+    return;
 }
 
-X86BinaryWriter::X86BinaryWriter(char *path, BytecodeStream &bytecodeStream) : BinaryWriter(path, bytecodeStream) {}
+X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
-void X86BinaryWriter::write() {
+void X86ASMGenerator::write() {
+#if defined(_WIN32)
+    buffer.append("global main\n"
+        "extern ExitProcess\n\n\n"
+
+        "section .text\n"
+        "main:\n");
+#elif defined(__linux__)
+    buffer.append("global main\n"
+
+        "section .text\n"
+        "main:\n");
+#endif
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
             case STOP:
-                // обработка STOP
+                X86ASMGenerator::stop();
                 break;
             case GO_TO:
                 // обработка GO_TO
@@ -920,4 +935,20 @@ void X86BinaryWriter::write() {
                 break;
         }
     }
+}
+
+void X86ASMGenerator::stop() {
+#if defined(_WIN32)
+    buffer.append("\txor rax, rax\n"
+        "\tcall ExitProcess\n");
+#elif defined(__linux__)
+    buffer.append("\tmov eax, 60\n"
+        "\txor edi, edi\n"
+        "\tsyscall\n")
+#endif
+        return;
+}
+
+void X86ASMGenerator::print() {
+    printf("asm:\n%s", this->buffer.c_str());
 }
