@@ -476,7 +476,7 @@ X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : A
 void X86ASMGenerator::write() {
 #if defined(_WIN32)
     buffer.append("global main\n"
-        "extern ExitProcess\n"
+        "extern ExitProcess\n\n\n"
 
         "section .text\n"
         "main:\n");
@@ -939,7 +939,8 @@ void X86ASMGenerator::write() {
 
 void X86ASMGenerator::stop() {
 #if defined(_WIN32)
-    buffer.append("\txor eax, eax\n");
+    buffer.append("\txor rax, rax\n"
+        "\tcall ExitProcess\n");
 #elif defined(__linux__)
     buffer.append("\tmov eax, 60\n"
         "\txor edi, edi\n"
@@ -949,5 +950,5 @@ void X86ASMGenerator::stop() {
 }
 
 void X86ASMGenerator::print() {
-    printf("asm: %s", this->buffer);
+    printf("asm:\n%s", this->buffer.c_str());
 }
