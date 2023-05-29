@@ -962,8 +962,9 @@ void X86ASMGenerator::write() {
     }
 }
 
-// *sp is a stack pointer, *bp is usually used as a stack pointer, rax is used in devision as a higher bit of division result also 
-// it's what is what is devised 
+// *sp is a stack pointer, *bp is usually used as a base pointer to element of a stack, 
+// rax is used in devision as a higher bit of division result also it's what is what is devised 
+
 
 void X86ASMGenerator::stop() {
 #if defined(_WIN32)
