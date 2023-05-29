@@ -524,22 +524,22 @@ void X86ASMGenerator::write() {
                 X86ASMGenerator::swapref();
                 break;
             case IADD:
-                // обработка IADD
+                X86ASMGenerator::iadd();
                 break;
             case ISUB:
-                // обработка ISUB
+                X86ASMGenerator::isub();
                 break;
             case IDIVIDE:
-                // обработка IDIVIDE
+                X86ASMGenerator::idivide();
                 break;
             case IMUL:
-                // обработка IMUL
+                X86ASMGenerator::imul();
                 break;
             case IMOD:
-                // обработка IMOD
+                X86ASMGenerator::imod();
                 break;
             case IXOR:
-                // обработка IXOR
+                X86ASMGenerator::ixor();
                 break;
             case RESERVED9:
                 // обработка RESERVED9
@@ -962,6 +962,9 @@ void X86ASMGenerator::write() {
     }
 }
 
+// *sp is a stack pointer, *bp is usually used as a stack pointer, rax is used in devision as a higher bit of division result also 
+// it's what is what is devised 
+
 void X86ASMGenerator::stop() {
 #if defined(_WIN32)
     buffer.append("\txor rax, rax\n"
@@ -974,26 +977,105 @@ void X86ASMGenerator::stop() {
         return;
 }
 
-void X86ASMGenerator::go_to()
-{
+void X86ASMGenerator::go_to() {
     buffer.append("\tjmp ");
     uint8_t offset = bs.readByte();
-    buffer.append("\t$+"+std::to_string(offset)+"\n");
+    buffer.append("$+" + std::to_string(offset) + "\n");
+    return;
 }
 
-void X86ASMGenerator::swapref()
-{
-    uint8_t first = STACKSIZE*bs.readByte();
-    uint8_t second = STACKSIZE*bs.readByte();
+void X86ASMGenerator::swapref() {
+    uint8_t first = STACKSIZE * bs.readByte();
+    uint8_t second = STACKSIZE * bs.readByte();
     //depends of size or registers might need to change e**(32 bits) to r**(64 bits)
-    buffer.append("\tmov esi, stack\n");
-    buffer.append("\tmov eax, [esi+" + std::to_string(first) + "]\n");
-    buffer.append("\tmov ebx, [esi+" + std::to_string(second) + "]\n");
-    buffer.append("xchg eax, ebx");
-    buffer.append("\tmov [esi+" + std::to_string(first) + "], eax\n");
-    buffer.append("\tmov [esi+" + std::to_string(second) + "], ebx\n");
+    buffer.append("\tmov rax, [rsp+" + std::to_string(first) + "]\n");
+    buffer.append("\tmov rbx, [rsp+" + std::to_string(second) + "]\n");
+    buffer.append("\tmov [rsp+" + std::to_string(first) + "], rbx\n");
+    buffer.append("\tmov [rsp+" + std::to_string(second) + "], rax\n");
+    return;
+}
+
+void X86ASMGenerator::iadd() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tadd rax, rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::isub() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tsub rax, rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::idivide() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    // *dx is used to store
+    buffer.append("\txor rdx, rdx\n");
+    buffer.append("\tidiv rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::imul() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\timul rax, rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::imod() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    // *dx is used to store
+    buffer.append("\txor rdx, rdx\n");
+    buffer.append("\tidiv rbx\n");
+    buffer.append("\tpush rdx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ixor() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\txor rax, rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::reserved9() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::irshift() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::pop() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::pop2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dup() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ior() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::iand() {
+    return;
 }
 
 void X86ASMGenerator::print() {
     printf("asm:\n%s", this->buffer.c_str());
 }
+

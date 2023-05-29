@@ -9,7 +9,7 @@
 #include "ASMGenerator.h"
 
 int main() {
-    std::string tst = "00";
+    std::string tst = "000102020001030405060708";
     BytecodeStream bytecodeStream(tst);
     X86ASMGenerator binaryWriter = X86ASMGenerator(tst.data(), bytecodeStream);
     binaryWriter.write();
