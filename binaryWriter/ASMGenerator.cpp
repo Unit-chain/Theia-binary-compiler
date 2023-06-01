@@ -1449,8 +1449,8 @@ ALWAYS_INLINE void X86ASMGenerator::reserved74() {
 }
 
 ALWAYS_INLINE void X86ASMGenerator::dcnst_0() {
-    buffer.append()
-        return;
+    buffer.append();
+    return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::dcnst_1() {
