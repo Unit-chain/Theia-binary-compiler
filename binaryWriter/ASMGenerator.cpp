@@ -1261,6 +1261,485 @@ ALWAYS_INLINE void X86ASMGenerator::u64str_3() {
     return;
 }
 
+ALWAYS_INLINE void X86ASMGenerator::astorec() {
+    buffer.append("\tpop rcx\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tpop rax\n");
+    buffer.append("\tmov [rcx+rbx], rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadc() {
+    buffer.append("\tmov rax, [rcx]\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128str_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128str_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128str_2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128str_3() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ldc() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ild_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ild_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ild_2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ild_3() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::swap() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tpush rax\n");
+    buffer.append("\tpush rbx\n");
+    return;
+}
+//This is some weird BCrap TODO
+ALWAYS_INLINE void X86ASMGenerator::if_acmpeq() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("je $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_acmpne() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jne $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmpeq() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("je $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmpge() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jge $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmpgt() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jg $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmple() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jle $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmplt() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jl $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::if_icmpne() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("mov rbx, [rsp+8]");
+    buffer.append("cmp rax, rbx");
+    buffer.append("jne $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifeq() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("je $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifge() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jge $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifgt() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jg $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifle() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jle $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::iflt() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jl $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifne() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jne $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifnonnull() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("jne $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ifnull() {
+    buffer.append("mov rax, [rsp]");
+    buffer.append("cmp rax, 0");
+    buffer.append("je $+" + std::to_string(bs.readByte()));
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::nop() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::reserved74() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dcnst_0() {
+    buffer.append()
+        return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dcnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lcnst_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lcnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::reserved79() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dadd() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128cnst_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128cnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256cnst_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256cnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dsub() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lsub() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lmul() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ldiv() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256str_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256str_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256str_2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256str_3() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::rtcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::stcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::itfcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::spcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lld_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lld_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lld_2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lld_3() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadi() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astorei() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::reserved101() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dinv() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ddiv() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dmul() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadl() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astorel() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadd() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astored() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadb() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astoreb() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::reserved111() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::iinc() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2d() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2u64() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2u128() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2u256() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2b() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2c() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2l() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::i2s() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::d2i() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::d2l() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ireturn() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lreturn() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::Return() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::areturn() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::New() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::newarray() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::new_mdarray() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dreturn() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32return() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64return() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u128return() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u256return() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadu32() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astoreu32() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadu64() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astoreu64() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadu128() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astoreu128() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloadu256() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astoreu256() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloada() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astorea() {
+    return;
+}
+
 void X86ASMGenerator::print() {
     printf("asm:\n%s", this->buffer.c_str());
 }
