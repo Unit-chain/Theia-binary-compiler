@@ -542,418 +542,418 @@ void X86ASMGenerator::write() {
                 X86ASMGenerator::ixor();
                 break;
             case RESERVED9:
-                // обработка RESERVED9
+                X86ASMGenerator::reserved9();
                 break;
             case ILSHIFT:
-                // обработка ILSHIFT
+                X86ASMGenerator::ilshift();
                 break;
             case IRSHIFT:
-                // обработка IRSHIFT
+                X86ASMGenerator::irshift();
                 break;
             case POP:
-                // обработка POP
+                X86ASMGenerator::pop();
                 break;
             case POP2:
-                // обработка POP2
+                X86ASMGenerator::pop2();
                 break;
             case DUP:
-                // обработка DUP
+                X86ASMGenerator::dup();
                 break;
             case IOR:
-                // обработка IOR
+                X86ASMGenerator::ior();
                 break;
             case IAND:
-                // обработка IAND
+                X86ASMGenerator::iadd();
                 break;
             case PSHNULL:
-                // обработка PSHNULL
+                X86ASMGenerator::pshnull();
                 break;
             case SHA3:
-                // обработка SHA3
+                X86ASMGenerator::sha3();
                 break;
             case BALANCE:
-                // обработка BALANCE
+                X86ASMGenerator::balance();
                 break;
             case TIMESTAMP:
-                // обработка TIMESTAMP
+                X86ASMGenerator::timestamp();
                 break;
             case BLOCKHASH:
-                // обработка BLOCKHASH
+                X86ASMGenerator::blockhash();
                 break;
             case CHAINID:
-                // обработка CHAINID
+                X86ASMGenerator::chainid();
                 break;
             case CREATE:
-                // обработка CREATE
+                X86ASMGenerator::create();
                 break;
             case DESTRUCT:
-                // обработка DESTRUCT
+                X86ASMGenerator::destruct();
                 break;
             case ADDRESS:
-                // обработка ADDRESS
+                X86ASMGenerator::address();
                 break;
             case INVALID:
-                // обработка INVALID
+                X86ASMGenerator::invalid();
                 break;
             case ICNST_0:
-                // обработка ICNST_0
+                X86ASMGenerator::icnst_0();
                 break;
             case ICNST_1:
-                // обработка ICNST_1
+                X86ASMGenerator::icnst_1();
                 break;
             case ICNST_2:
-                // обработка ICNST_2
+                X86ASMGenerator::icnst_2();
                 break;
             case ICNST_3:
-                // обработка ICNST_3
+                X86ASMGenerator::icnst_3();
                 break;
             case ICNST_4:
-                // обработка ICNST_4
+                X86ASMGenerator::icnst_4();
                 break;
             case U64CNST_0:
-                // обработка U64CNST_0
+                X86ASMGenerator::u64cnst_0();
                 break;
             case U64CNST_1:
-                // обработка U64CNST_1
+                X86ASMGenerator::u64cnst_1();
                 break;
             case CHECKTYPE:
-                // обработка CHECKTYPE
+                X86ASMGenerator::checktype();
                 break;
             case U32CNST_0:
-                // обработка U32CNST_0
+                X86ASMGenerator::u32cnst_0();
                 break;
             case U32CNST_1:
-                // обработка U32CNST_1
+                X86ASMGenerator::u32cnst_1();
                 break;
             case U32STR_0:
-                // обработка U32STR_0
+                X86ASMGenerator::u32str_0();
                 break;
             case U32STR_1:
-                // обработка U32STR_1
+                X86ASMGenerator::u32str_1();
                 break;
             case U32STR_2:
-                // обработка U32STR_2
+                X86ASMGenerator::u32str_2();
                 break;
             case U32STR_3:
-                // обработка U32STR_3
+                X86ASMGenerator::u32str_3();
                 break;
             case U64STR_0:
-                // обработка U64STR_0
+                X86ASMGenerator::u64str_0();
                 break;
             case U64STR_1:
-                // обработка U64STR_1
+                X86ASMGenerator::u64str_1();
                 break;
             case U64STR_2:
-                // обработка U64STR_2
+                X86ASMGenerator::u64str_2();
                 break;
             case U64STR_3:
-                // обработка U64STR_3
+                X86ASMGenerator::u64str_3();
                 break;
             case ASTOREC:
-                // обработка ASTOREC
+                X86ASMGenerator::astorec();
                 break;
             case ALOADC:
-                // обработка ALOADC
+                X86ASMGenerator::aloadc();
                 break;
             case U128STR_0:
-                // обработка U128STR_0
+                X86ASMGenerator::u128str_0();
                 break;
             case U128STR_1:
-                // обработка U128STR_1
+                X86ASMGenerator::u128str_1();
                 break;
             case U128STR_2:
-                // обработка U128STR_2
+                X86ASMGenerator::u128str_2();
                 break;
             case U128STR_3:
-                // обработка U128STR_3
+                X86ASMGenerator::u128str_3();
                 break;
             case LDC:
-                // обработка LDC
+                X86ASMGenerator::ldc();
                 break;
             case ILD_0:
-                // обработка ILD_0
+                X86ASMGenerator::ild_0();
                 break;
             case ILD_1:
-                // обработка ILD_1
+                X86ASMGenerator::ild_1();
                 break;
             case ILD_2:
-                // обработка ILD_2
+                X86ASMGenerator::ild_2();
                 break;
             case ILD_3:
-                // обработка ILD_3
+                X86ASMGenerator::ild_3();
                 break;
             case SWAP:
-                // обработка SWAP
+                X86ASMGenerator::swap();
                 break;
             case IF_ACMPEQ:
-                // обработка IF_ACMPEQ
+                X86ASMGenerator::if_acmpeq();
                 break;
             case IF_ACMPNE:
-                // обработка IF_ACMPNE
+                X86ASMGenerator::if_acmpne();
                 break;
             case IF_ICMPEQ:
-                // обработка IF_ICMPEQ
+                X86ASMGenerator::if_icmpeq();
                 break;
             case IF_ICMPGE:
-                // обработка IF_ICMPGE
+                X86ASMGenerator::if_icmpge();
                 break;
             case IF_ICMPGT:
-                // обработка IF_ICMPGT
+                X86ASMGenerator::if_icmpgt();
                 break;
             case IF_ICMPLE:
-                // обработка IF_ICMPLE
+                X86ASMGenerator::if_icmple();
                 break;
             case IF_ICMPLT:
-                // обработка IF_ICMPLT
+                X86ASMGenerator::if_icmplt();
                 break;
             case IF_ICMPNE:
-                // обработка IF_ICMPNE
+                X86ASMGenerator::if_icmpne();
                 break;
             case IFEQ:
-                // обработка IFEQ
+                X86ASMGenerator::ifeq();
                 break;
             case IFGE:
-                // обработка IFGE
+                X86ASMGenerator::ifge();
                 break;
             case IFGT:
-                // обработка IFGT
+                X86ASMGenerator::ifgt();
                 break;
             case IFLE:
-                // обработка IFLE
+                X86ASMGenerator::ifle();
                 break;
             case IFLT:
-                // обработка IFLT
+                X86ASMGenerator::iflt();
                 break;
             case IFNE:
-                // обработка IFNE
+                X86ASMGenerator::ifne();
                 break;
             case IFNONNULL:
-                // обработка IFNONNULL
+                X86ASMGenerator::ifnonnull();
                 break;
             case IFNULL:
-                // обработка IFNULL
+                X86ASMGenerator::ifnull();
                 break;
             case NOP:
-                // обработка NOP
+                X86ASMGenerator::nop();
                 break;
             case RESERVED74:
-                // обработка RESERVED74
+                X86ASMGenerator::reserved74();
                 break;
             case DCNST_0:
-                // обработка DCNST_0
+                X86ASMGenerator::dcnst_0();
                 break;
             case DCNST_1:
-                // обработка DCNST_1
+                X86ASMGenerator::dcnst_1();
                 break;
             case LCNST_0:
-                // обработка LCNST_0
+                X86ASMGenerator::lcnst_0();
                 break;
             case LCNST_1:
-                // обработка LCNST_1
+                X86ASMGenerator::lcnst_1();
                 break;
             case RESERVED79:
-                // обработка RESERVED79
+                X86ASMGenerator::reserved79();
                 break;
             case DADD:
-                // обработка DADD
+                X86ASMGenerator::dadd();
                 break;
             case U128CNST_0:
-                // обработка U128CNST_0
+                X86ASMGenerator::u128cnst_0();
                 break;
             case U128CNST_1:
-                // обработка U128CNST_1
+                X86ASMGenerator::u128cnst_1();
                 break;
             case U256CNST_0:
-                // обработка U256CNST_0
+                X86ASMGenerator::u256cnst_0();
                 break;
             case U256CNST_1:
-                // обработка U256CNST_1
+                X86ASMGenerator::u256cnst_1();
                 break;
             case DSUB:
-                // обработка DSUB
+                X86ASMGenerator::dsub();
                 break;
             case LSUB:
-                // обработка LSUB
+                X86ASMGenerator::lsub();
                 break;
             case LMUL:
-                // обработка LMUL
+                X86ASMGenerator::lmul();
                 break;
             case LDIV:
-                // обработка LDIV
+                X86ASMGenerator::ldiv();
                 break;
             case U256STR_0:
-                // обработка U256STR_0
+                X86ASMGenerator::u256str_0();
                 break;
             case U256STR_1:
-                // обработка U256STR_1
+                X86ASMGenerator::u256str_1();
                 break;
             case U256STR_2:
-                // обработка U256STR_2
+                X86ASMGenerator::u256str_2();
                 break;
             case U256STR_3:
-                // обработка U256STR_3
+                X86ASMGenerator::u256str_3();
                 break;
             case RTCALL:
-                // обработка RTCALL
+                X86ASMGenerator::rtcall();
                 break;
             case STCALL:
-                // обработка STCALL
+                X86ASMGenerator::stcall();
                 break;
             case ITFCALL:
-                // обработка ITFCALL
+                X86ASMGenerator::itfcall();
                 break;
             case SPCALL:
-                // обработка SPCALL
+                X86ASMGenerator::spcall();
                 break;
             case LLD_0:
-                // обработка LLD_0
+                X86ASMGenerator::lld_0();
                 break;
             case LLD_1:
-                // обработка LLD_1
+                X86ASMGenerator::lld_1();
                 break;
             case LLD_2:
-                // обработка LLD_2
+                X86ASMGenerator::lld_2();
                 break;
             case LLD_3:
-                // обработка LLD_3
+                X86ASMGenerator::lld_3();
                 break;
             case ALOADI:
-                // обработка ALOADI
+                X86ASMGenerator::aloadi();
                 break;
             case ASTOREI:
-                // обработка ASTOREI
+                X86ASMGenerator::astorei();
                 break;
             case RESERVED101:
-                // обработка RESERVED101
+                X86ASMGenerator::reserved101();
                 break;
             case DINV:
-                // обработка DINV
+                X86ASMGenerator::dinv();
                 break;
             case DDIV:
-                // обработка DDIV
+                X86ASMGenerator::ddiv();
                 break;
             case DMUL:
-                // обработка DMUL
+                X86ASMGenerator::dmul();
                 break;
             case ALOADL:
-                // обработка ALOADL
+                X86ASMGenerator::aloadl();
                 break;
             case ASTOREL:
-                // обработка ASTOREL
+                X86ASMGenerator::astorel();
                 break;
             case ALOADD:
-                // обработка ALOADD
+                X86ASMGenerator::aloadd();
                 break;
             case ASTORED:
-                // обработка ASTORED
+                X86ASMGenerator::astored();
                 break;
             case ALOADB:
-                // обработка ALOADB
+                X86ASMGenerator::aloadb();
                 break;
             case ASTOREB:
-                // обработка ASTOREB
+                X86ASMGenerator::astoreb();
                 break;
             case RESERVED111:
-                // обработка RESERVED111
+                X86ASMGenerator::reserved111();
                 break;
             case IINC:
-                // обработка IINC
+                X86ASMGenerator::iinc();
                 break;
             case I2D:
-                // обработка I2D
+                X86ASMGenerator::i2d();
                 break;
             case I2U64:
-                // обработка I2U64
+                X86ASMGenerator::i2u64();
                 break;
             case I2U128:
-                // обработка I2U128
+                X86ASMGenerator::i2u128();
                 break;
             case I2U256:
-                // обработка I2U256
+                X86ASMGenerator::i2u256();
                 break;
             case I2B:
-                // обработка I2B
+                X86ASMGenerator::i2b();
                 break;
             case I2C:
-                // обработка I2C
+                X86ASMGenerator::i2c();
                 break;
             case I2L:
-                // обработка I2L
+                X86ASMGenerator::i2l();
                 break;
             case I2S:
-                // обработка I2S
+                X86ASMGenerator::i2s();
                 break;
             case D2I:
-                // обработка D2I
+                X86ASMGenerator::d2i();
                 break;
             case D2L:
-                // обработка D2L
+                X86ASMGenerator::d2l();
                 break;
             case IRETURN:
-                // обработка IRETURN
+                X86ASMGenerator::ireturn();
                 break;
             case LRETURN:
-                // обработка LRETURN
+                X86ASMGenerator::lreturn();
                 break;
             case RETURN:
-                // обработка RETURN
+                X86ASMGenerator::Return();
                 break;
             case ARETURN:
-                // обработка ARETURN
+                X86ASMGenerator::areturn();
                 break;
             case NEW:
-                // обработка NEW
+                X86ASMGenerator::New();
                 break;
             case NEWARRAY:
-                // обработка NEWARRAY
+                X86ASMGenerator::newarray();
                 break;
             case NEW_MDARRAY:
-                // обработка NEW_MDARRAY
+                X86ASMGenerator::new_mdarray();
                 break;
             case DRETURN:
-                // обработка DRETURN
+                X86ASMGenerator::dreturn();
                 break;
             case U32RETURN:
-                // обработка U32RETURN
+                X86ASMGenerator::u32return();
                 break;
             case U64RETURN:
-                // обработка U64RETURN
+                X86ASMGenerator::u64return();
                 break;
             case U128RETURN:
-                // обработка U128RETURN
+                X86ASMGenerator::u128return();
                 break;
             case U256RETURN:
-                // обработка U256RETURN
+                X86ASMGenerator::u256return();
                 break;
             case ALOADU32:
-                // обработка ALOADU32
+                X86ASMGenerator::aloadu32();
                 break;
             case ASTOREU32:
-                // обработка ASTOREU32
+                X86ASMGenerator::astoreu32();
                 break;
             case ALOADU64:
-                // обработка ALOADU64
+                X86ASMGenerator::aloadu64();
                 break;
             case ASTOREU64:
-                // обработка ASTOREU64
+                X86ASMGenerator::astoreu64();
                 break;
             case ALOADU128:
-                // обработка ALOADU128
+                X86ASMGenerator::aloadu128();
                 break;
             case ASTOREU128:
-                // обработка ASTOREU128
+                X86ASMGenerator::astoreu128();
                 break;
             case ALOADU256:
-                // обработка ALOADU256
+                X86ASMGenerator::aloadu256();
                 break;
             case ASTOREU256:
-                // обработка ASTOREU256
+                X86ASMGenerator::astoreu256();
                 break;
             case ALOADA:
-                // обработка ALOADA
+                X86ASMGenerator::aloada();
                 break;
             case ASTOREA:
-                // обработка ASTOREA
+                X86ASMGenerator::astorea();
                 break;
             default:
                 // обработка неизвестного opcode
@@ -979,16 +979,14 @@ void X86ASMGenerator::stop() {
 }
 
 void X86ASMGenerator::go_to() {
-    buffer.append("\tjmp ");
-    uint8_t offset = bs.readByte();
-    buffer.append("$+" + std::to_string(offset) + "\n");
+    buffer.append("\tjmp $+" + std::to_string(bs.readByte()) + "\n");
     return;
 }
 
 void X86ASMGenerator::swapref() {
     uint8_t first = STACKSIZE * bs.readByte();
     uint8_t second = STACKSIZE * bs.readByte();
-    //depends of size or registers might need to change e**(32 bits) to r**(64 bits)
+    //depends of size or registers might need to change e**(32 bits) and r**(64 bits)
     buffer.append("\tmov rax, [rsp+" + std::to_string(first) + "]\n");
     buffer.append("\tmov rbx, [rsp+" + std::to_string(second) + "]\n");
     buffer.append("\tmov [rsp+" + std::to_string(first) + "], rbx\n");
@@ -1049,30 +1047,217 @@ ALWAYS_INLINE void X86ASMGenerator::ixor() {
 }
 
 ALWAYS_INLINE void X86ASMGenerator::reserved9() {
+    buffer.append("\tnop\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ilshift() {
+    uint8_t shift = bs.readByte();
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    if (shift == 8)
+        buffer.append("\tshl rax, cl");
+    else if (shift == 16)
+        buffer.append("\tshl rax, cx");
+    else if (shift == 32)
+        buffer.append("\tshl rax, ecx");
+    else if (shift > 32)
+        printf("shift must not be bigger then 32");
+    buffer.append("\tpush rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::irshift() {
+    uint8_t shift = bs.readByte();
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    if (shift == 8)
+        buffer.append("\tshr rax, cl");
+    else if (shift == 16)
+        buffer.append("\tshr rax, cx");
+    else if (shift == 32)
+        buffer.append("\tshr rax, ecx");
+    else if (shift > 32)
+        printf("shift must not be bigger then 32");
+    buffer.append("\tpush rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::pop() {
+    buffer.append("\tpop rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::pop2() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::dup() {
+    buffer.append("\tmov rax, [rax]\n");
+    buffer.append("\tpush rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::ior() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tor rax, rbx\n");
+    buffer.append("\tpush rax\n");
     return;
 }
 
 ALWAYS_INLINE void X86ASMGenerator::iand() {
+    buffer.append("\tpop rax\n");
+    buffer.append("\tpop rbx\n");
+    buffer.append("\tand rax, rbx\n");
+    buffer.append("\tpush rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::pshnull() {
+    buffer.append("push 0");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::sha3() {
+    sha3used = true;
+    buffer.append("sha3");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::balance() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::timestamp() {
+    timestampused = true;
+#if defined(_WIN32)
+    buffer.append("\tsub rsp, 40\n");
+    buffer.append("\tlea rcx, [systemTimeStruct]\n");
+    buffer.append("\tcall GetSystemTime\n");
+    buffer.append("\tadd rsp, 40\n");
+#elif defined(__linux__)
+    buffer.append("mov rax, 228");
+    buffer.append("xor rdi, rdi");
+    buffer.append("lea rsi, [time_spec]");
+    buffer.append("syscall ");
+#endif
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::blockhash() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::chainid() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::create() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::destruct() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::address() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::invalid() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::icnst_0() {
+    buffer.append("\tpush 0\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::icnst_1() {
+    buffer.append("\tpush 1\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::icnst_2() {
+    buffer.append("\tpush 2\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::icnst_3() {
+    buffer.append("\tpush 3\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::icnst_4() {
+    buffer.append("\tpush 4\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64cnst_0() {
+    buffer.append("\tpush 0\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64cnst_1() {
+    buffer.append("\tpush 1\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::checktype() {
+    buffer.append("\ttodo\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32cnst_0() {
+    buffer.append("\tpush 0\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32cnst_1() {
+    buffer.append("\tpush 1\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32str_0() {
+    buffer.append("\tpop eax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32str_1() {
+    buffer.append("\tpop ebx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32str_2() {
+    buffer.append("\tpop ecx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u32str_3() {
+    buffer.append("\tpop edx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64str_0() {
+    buffer.append("\tpop rax\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64str_1() {
+    buffer.append("\tpop rbx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64str_2() {
+    buffer.append("\tpop rcx\n");
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::u64str_3() {
+    buffer.append("\tpop rdx\n");
     return;
 }
 
