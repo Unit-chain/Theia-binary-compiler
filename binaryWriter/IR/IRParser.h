@@ -15,7 +15,7 @@ struct Command {
     std::vector<int> args;
 };
 
-std::string trim(const std::string& str) {
+std::string trim(const std::string &str) {
     size_t start = str.find_first_not_of(" \t\r\n");
     size_t end = str.find_last_not_of(" \t\r\n");
     if (start == std::string::npos || end == std::string::npos) {
@@ -25,7 +25,7 @@ std::string trim(const std::string& str) {
 }
 
 // Function for splitting a string into tokens
-std::vector<std::string> tokenize(const std::string& input, char delimiter) {
+std::vector<std::string> tokenize(const std::string &input, char delimiter) {
     std::vector<std::string> tokens;
     std::stringstream ss(input);
     std::string token;
@@ -45,7 +45,7 @@ std::vector<std::string> tokenize(const std::string& input, char delimiter) {
 }
 
 // Function for parsing a command
-Command parseCommand(const std::string& line) {
+Command parseCommand(const std::string &line) {
     Command command;
     std::vector<std::string> tokens = tokenize(line, ' ');
 
@@ -64,16 +64,18 @@ Command parseCommand(const std::string& line) {
         // Separating arguments using commas and spaces
         std::vector<std::string> argumentTokens = tokenize(arguments, ',');
 
-        for (const std::string& argumentToken : argumentTokens) {
+        for (const std::string &argumentToken : argumentTokens) {
             std::string trimmedArgument = trim(argumentToken);
             if (trimmedArgument[0] == '@') {
                 // Handling labels for branching
                 command.args.push_back(std::stoi(trimmedArgument.substr(1)));
-            } else {
+            }
+            else {
                 // Checking for correct arguments
                 try {
                     command.args.push_back(std::stoi(trimmedArgument));
-                } catch (const std::invalid_argument&) {
+                }
+                catch (const std::invalid_argument &) {
                     std::cout << "Invalid argument: " << trimmedArgument << std::endl;
                 }
             }
@@ -84,11 +86,11 @@ Command parseCommand(const std::string& line) {
 }
 
 // Function for parsing code
-std::vector<Command> parseCode(const std::string& code) {
+std::vector<Command> parseCode(const std::string &code) {
     std::vector<Command> commands;
     std::vector<std::string> lines = tokenize(code, '\n');
 
-    for (const std::string& line : lines) {
+    for (const std::string &line : lines) {
         if (line.empty() || line[0] != '#') {
             continue;
         }

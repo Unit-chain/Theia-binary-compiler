@@ -419,7 +419,15 @@ void X86ASMGenerator::write() {
 }
 
 void X86ASMGenerator::stop() {
-    return;
+#if defined(_WIN32)
+    buffer.append("\txor rax, rax\n"
+        "\tcall ExitProcess\n");
+#elif defined(__linux__)
+    buffer.append("\tmov eax, 0x60\n"
+        "\txor edi, edi\n"
+        "\tsyscall\n")
+#endif
+        return;
 }
 
 void X86ASMGenerator::bl() {

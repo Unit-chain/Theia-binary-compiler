@@ -75,9 +75,9 @@ protected:
     virtual ALWAYS_INLINE void div() = 0;
     virtual ALWAYS_INLINE void mul() = 0;
     virtual ALWAYS_INLINE void mod() = 0;
-    virtual ALWAYS_INLINE void f_or();
-    virtual ALWAYS_INLINE void f_and();
-    virtual ALWAYS_INLINE void f_xor();
+    virtual ALWAYS_INLINE void f_or() = 0;
+    virtual ALWAYS_INLINE void f_and() = 0;
+    virtual ALWAYS_INLINE void f_xor() = 0;
     virtual ALWAYS_INLINE void lshift() = 0;
     virtual ALWAYS_INLINE void rshift() = 0;
     virtual ALWAYS_INLINE void pop() = 0;
