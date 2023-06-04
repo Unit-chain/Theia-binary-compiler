@@ -134,15 +134,162 @@ void ARM64ASMGenerator::write() {
     }
 }
 
-//std::shared_ptr<char> ARM64ASMGenerator::iadd() {
-//    char *iadd = (char *) std::malloc(8);
-//    iadd = (char *) "add x0, x1, x1\n";
-//    return std::shared_ptr<char>(iadd);
-//}
-
 void ARM64ASMGenerator::stop() {
     return;
 }
+
+void ARM64ASMGenerator::bl() {
+    return;
+}
+
+void ARM64ASMGenerator::swap_ref() {
+    return;
+}
+
+void ARM64ASMGenerator::swap() {
+    return;
+}
+
+void ARM64ASMGenerator::add() {
+    return;
+}
+
+void ARM64ASMGenerator::sub() {
+    return;
+}
+
+void ARM64ASMGenerator::div() {
+    return;
+}
+
+void ARM64ASMGenerator::mul() {
+    return;
+}
+
+void ARM64ASMGenerator::mod() {
+    return;
+}
+
+void ARM64ASMGenerator::f_or() {
+    return;
+}
+
+void ARM64ASMGenerator::f_and() {
+    return;
+}
+
+void ARM64ASMGenerator::f_xor() {
+    return;
+}
+
+void ARM64ASMGenerator::lshift() {
+    return;
+}
+
+void ARM64ASMGenerator::rshift() {
+    return;
+}
+
+void ARM64ASMGenerator::pop() {
+    return;
+}
+
+void ARM64ASMGenerator::pop2() {
+    return;
+}
+
+void ARM64ASMGenerator::dup() {
+    return;
+}
+
+void ARM64ASMGenerator::vmcall() {
+    return;
+}
+
+void ARM64ASMGenerator::cnst_0() {
+    return;
+}
+
+void ARM64ASMGenerator::cnst_1() {
+    return;
+}
+
+void ARM64ASMGenerator::cnst_2() {
+    return;
+}
+
+void ARM64ASMGenerator::cnst_3() {
+    return;
+}
+
+void ARM64ASMGenerator::cnst_4() {
+    return;
+}
+
+void ARM64ASMGenerator::astorea() {
+    return;
+}
+
+void ARM64ASMGenerator::aloada() {
+    return;
+}
+
+void ARM64ASMGenerator::str() {
+    return;
+}
+
+void ARM64ASMGenerator::ldr() {
+    return;
+}
+
+void ARM64ASMGenerator::strp() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_eq() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_ne() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_ge() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_le() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_gt() {
+    return;
+}
+
+void ARM64ASMGenerator::cmp_lt() {
+    return;
+}
+
+void ARM64ASMGenerator::nop() {
+    return;
+}
+
+void ARM64ASMGenerator::call() {
+    return;
+}
+
+void ARM64ASMGenerator::ret() {
+    return;
+}
+
+void ARM64ASMGenerator::virtualcall() {
+    return;
+}
+
+void ARM64ASMGenerator::align() {
+    return;
+}
+
 
 X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
@@ -272,5 +419,157 @@ void X86ASMGenerator::write() {
 }
 
 void X86ASMGenerator::stop() {
+    return;
+}
+
+void X86ASMGenerator::bl() {
+    return;
+}
+
+void X86ASMGenerator::swap_ref() {
+    return;
+}
+
+void X86ASMGenerator::swap() {
+    return;
+}
+
+void X86ASMGenerator::add() {
+    return;
+}
+
+void X86ASMGenerator::sub() {
+    return;
+}
+
+void X86ASMGenerator::div() {
+    return;
+}
+
+void X86ASMGenerator::mul() {
+    return;
+}
+
+void X86ASMGenerator::mod() {
+    return;
+}
+
+void X86ASMGenerator::f_or() {
+    return;
+}
+
+void X86ASMGenerator::f_and() {
+    return;
+}
+
+void X86ASMGenerator::f_xor() {
+    return;
+}
+
+void X86ASMGenerator::lshift() {
+    return;
+}
+
+void X86ASMGenerator::rshift() {
+    return;
+}
+
+void X86ASMGenerator::pop() {
+    return;
+}
+
+void X86ASMGenerator::pop2() {
+    return;
+}
+
+void X86ASMGenerator::dup() {
+    return;
+}
+
+void X86ASMGenerator::vmcall() {
+    return;
+}
+
+void X86ASMGenerator::cnst_0() {
+    return;
+}
+
+void X86ASMGenerator::cnst_1() {
+    return;
+}
+
+void X86ASMGenerator::cnst_2() {
+    return;
+}
+
+void X86ASMGenerator::cnst_3() {
+    return;
+}
+
+void X86ASMGenerator::cnst_4() {
+    return;
+}
+
+void X86ASMGenerator::astorea() {
+    return;
+}
+
+void X86ASMGenerator::aloada() {
+    return;
+}
+
+void X86ASMGenerator::str() {
+    return;
+}
+
+void X86ASMGenerator::ldr() {
+    return;
+}
+
+void X86ASMGenerator::strp() {
+    return;
+}
+
+void X86ASMGenerator::cmp_eq() {
+    return;
+}
+
+void X86ASMGenerator::cmp_ne() {
+    return;
+}
+
+void X86ASMGenerator::cmp_ge() {
+    return;
+}
+
+void X86ASMGenerator::cmp_le() {
+    return;
+}
+
+void X86ASMGenerator::cmp_gt() {
+    return;
+}
+
+void X86ASMGenerator::cmp_lt() {
+    return;
+}
+
+void X86ASMGenerator::nop() {
+    return;
+}
+
+void X86ASMGenerator::call() {
+    return;
+}
+
+void X86ASMGenerator::ret() {
+    return;
+}
+
+void X86ASMGenerator::virtualcall() {
+    return;
+}
+
+void X86ASMGenerator::align() {
     return;
 }
