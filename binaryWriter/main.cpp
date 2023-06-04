@@ -15,13 +15,13 @@ int main() {
         #10	add 32, 32
         #11	bl @7
         @12:
-        #5 	ret 0, 0 ; 0, 0 means nothing to be returned, second argument not important in this case
+        #13 	ret 0, 0 ; 0, 0 means nothing to be returned, second argument not important in this case
     )";
 
     std::vector<Command> commands = parseCode(code);
 
     // print commands
-    for (const Command& command : commands) {
+    for (const Command &command : commands) {
         std::cout << "Command: " << command.name << std::endl;
         std::cout << "Arguments: ";
         for (int arg : command.args) {

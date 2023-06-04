@@ -1,0 +1,3 @@
+C:/Users/pasha/Documents/Theia-binary-compiler/build/CMakeFiles/binaryWriter.dir
+C:/Users/pasha/Documents/Theia-binary-compiler/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/pasha/Documents/Theia-binary-compiler/build/CMakeFiles/ZERO_CHECK.dir
