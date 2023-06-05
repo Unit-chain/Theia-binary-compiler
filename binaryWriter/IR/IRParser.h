@@ -9,10 +9,11 @@
 #include <vector>
 #include <sstream>
 
-// Structure for command presentation
+// Structure for command representation
 struct Command {
     std::string name;
-    std::vector<int> args;
+    std::vector<std::string> args;
+    char flag = '\0';
 };
 
 std::string trim(const std::string& str) {
@@ -35,7 +36,7 @@ std::vector<std::string> tokenize(const std::string& input, char delimiter) {
         if (commentPos != std::string::npos) {
             token = token.substr(0, commentPos);
         }
-        // Удалить лишние пробелы
+        // Remove unnecessary spaces
         token = trim(token);
         if (!token.empty()) {
             tokens.push_back(token);
@@ -67,16 +68,24 @@ Command parseCommand(const std::string& line) {
             std::string argument = trim(commandTokens[i]);
             if (argument[0] == '@') {
                 // Handling labels for branching
-                command.args.push_back(std::stoi(argument.substr(1)));
+                command.args.push_back(argument.substr(1));
             } else {
                 // checking arguments correctness
                 try {
-                    command.args.push_back(std::stoi(argument));
+                    argument.erase(std::remove(argument.begin(), argument.end(), ','), argument.end());
+                    command.args.push_back(argument);
                 } catch (const std::invalid_argument&) {
                     std::cout << "Invalid argument: " << argument << std::endl;
                 }
             }
         }
+
+        std::size_t dotPos = commandTokens[0].find('.');
+        if (dotPos != std::string::npos && dotPos < commandTokens[0].length() - 1) [[unlikely]] {
+            std::string result = commandTokens[0].substr(dotPos + 1);  // Extract the substring after the dot
+            command.flag = (char) commandTokens[0].substr(dotPos + 1)[0];
+        }
+
     }
 
     return command;
@@ -95,7 +104,7 @@ std::vector<Command> parseCode(const std::string& code) {
             continue;
         }
         pushBranch:
-            commands.push_back(parseCommand(line));
+        commands.push_back(parseCommand(line));
     }
 
     return commands;

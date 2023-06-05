@@ -35,12 +35,11 @@ int main() {
     std::string code(buff);
     std::vector<Command> commands = parseCode(code);
 
-    // Вывод команд
     for (const Command& command : commands) {
-        std::cout << "Command: " << command.name << std::endl;
-        std::cout << "Arguments: ";
-        for (int arg : command.args) {
-            std::cout << arg << " ";
+        std::cout << "Command: " << command.name << ", flag: " << command.flag << std::endl;
+        std::cout << "Arguments: \n";
+        for (int i = 0; i < command.args.size(); i++) {
+            printf("\targ%d: %s\n", i, command.args[i].c_str());
         }
         std::cout << std::endl;
     }
