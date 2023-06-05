@@ -47,34 +47,33 @@ std::vector<std::string> tokenize(const std::string& input, char delimiter) {
 // Function for parsing a command
 Command parseCommand(const std::string& line) {
     Command command;
-    std::vector<std::string> tokens = tokenize(line, ' ');
+    std::vector<std::string> tokens = tokenize(line, '\t');
+    if ((tokens.size() < 2) && tokens[0].c_str()[0] != '@') {
+        std::cout << "tab should be placed before command: " << line << std::endl;
+        exit(1);
+    }
 
-    if (!tokens.empty()) {
-        command.name = tokens[1];
+    std::vector<std::string> commandTokens;
+    if (tokens[0].c_str()[0] != '@') [[likely]] {
+        commandTokens = tokenize(tokens[1], ' ');
+    } else [[unlikely]] {
+        commandTokens = tokenize(tokens[0], ':');
+    }
 
-        // Combine all remaining tokens into the command arguments
-        std::string arguments;
-        for (size_t i = 2; i < tokens.size(); i++) {
-            arguments += tokens[i];
-            if (i != tokens.size() - 1) {
-                arguments += " ";
-            }
-        }
 
-        // Separating arguments using commas and spaces
-        std::vector<std::string> argumentTokens = tokenize(arguments, ',');
-
-        for (const std::string& argumentToken : argumentTokens) {
-            std::string trimmedArgument = trim(argumentToken);
-            if (trimmedArgument[0] == '@') {
+    if (!commandTokens.empty()) {
+        command.name = commandTokens[0];
+        for (size_t i = 1; i < commandTokens.size(); i++) {
+            std::string argument = trim(commandTokens[i]);
+            if (argument[0] == '@') {
                 // Handling labels for branching
-                command.args.push_back(std::stoi(trimmedArgument.substr(1)));
+                command.args.push_back(std::stoi(argument.substr(1)));
             } else {
-                // Checking for correct arguments
+                // checking arguments correctness
                 try {
-                    command.args.push_back(std::stoi(trimmedArgument));
+                    command.args.push_back(std::stoi(argument));
                 } catch (const std::invalid_argument&) {
-                    std::cout << "Invalid argument: " << trimmedArgument << std::endl;
+                    std::cout << "Invalid argument: " << argument << std::endl;
                 }
             }
         }
@@ -90,9 +89,13 @@ std::vector<Command> parseCode(const std::string& code) {
 
     for (const std::string& line : lines) {
         if (line.empty() || line[0] != '#') {
+            if (line[0] == '@') {
+                goto pushBranch;
+            }
             continue;
         }
-        commands.push_back(parseCommand(line));
+        pushBranch:
+            commands.push_back(parseCommand(line));
     }
 
     return commands;
