@@ -56,47 +56,31 @@ Command parseCommand(const std::string &line) {
     std::vector<std::string> commandTokens;
     if (tokens[0].c_str()[0] != '@') [[likely]] {
         commandTokens = tokenize(tokens[1], ' ');
-    } else [[unlikely]] {
+    }
+    else [[unlikely]] {
         commandTokens = tokenize(tokens[0], ':');
     }
 
 
-<<<<<<< HEAD
-    if (!commandTokens.empty()) {
-        command.name = commandTokens[0];
-        for (size_t i = 1; i < commandTokens.size(); i++) {
-            std::string argument = trim(commandTokens[i]);
-            if (argument[0] == '@') {
-                // Handling labels for branching
-                command.args.push_back(std::stoi(argument.substr(1)));
-            } else {
-                // checking arguments correctness
-                try {
-                    command.args.push_back(std::stoi(argument));
-                } catch (const std::invalid_argument&) {
-                    std::cout << "Invalid argument: " << argument << std::endl;
-=======
-        // Separating arguments using commas and spaces
-        std::vector<std::string> argumentTokens = tokenize(arguments, ',');
-
-        for (const std::string &argumentToken : argumentTokens) {
-            std::string trimmedArgument = trim(argumentToken);
-            if (trimmedArgument[0] == '@') {
-                // Handling labels for branching
-                command.args.push_back(std::stoi(trimmedArgument.substr(1)));
-            }
-            else {
-                // Checking for correct arguments
-                try {
-                    command.args.push_back(std::stoi(trimmedArgument));
+        if (!commandTokens.empty()) {
+            command.name = commandTokens[0];
+            for (size_t i = 1; i < commandTokens.size(); i++) {
+                std::string argument = trim(commandTokens[i]);
+                if (argument[0] == '@') {
+                    // Handling labels for branching
+                    command.args.push_back(std::stoi(argument.substr(1)));
                 }
-                catch (const std::invalid_argument &) {
-                    std::cout << "Invalid argument: " << trimmedArgument << std::endl;
->>>>>>> Ilya-branch-new
+                else {
+                    // checking arguments correctness
+                    try {
+                        command.args.push_back(std::stoi(argument));
+                    }
+                    catch (const std::invalid_argument &) {
+                        std::cout << "Invalid argument: " << argument << std::endl;
+                    }
                 }
             }
         }
-    }
 
     return command;
 }
@@ -113,8 +97,8 @@ std::vector<Command> parseCode(const std::string &code) {
             }
             continue;
         }
-        pushBranch:
-            commands.push_back(parseCommand(line));
+    pushBranch:
+        commands.push_back(parseCommand(line));
     }
 
     return commands;
