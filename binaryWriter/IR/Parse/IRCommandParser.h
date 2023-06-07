@@ -1,51 +1,30 @@
 //
-// Created by Kirill Zhukov on 04.06.2023.
+// Created by Kirill Zhukov on 06.06.2023.
 //
 
-#ifndef BINARYWRITER_IRPARSER_H
-#define BINARYWRITER_IRPARSER_H
+#ifndef CLASSTEST_IRCOMMANDPARSER_H
+#define CLASSTEST_IRCOMMANDPARSER_H
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
+#include "strutils.h"
+#include "errutils.h"
 
-// Structure for command representation
+///@struct Command
+///@brief Structure for Parse command representation
+///@var name - command name
+///@var args contains function arguments
+///@var command's condition flag
 struct Command {
     std::string name;
     std::vector<std::string> args;
     char flag = '\0';
 };
 
-std::string trim(const std::string& str) {
-    size_t start = str.find_first_not_of(" \t\r\n");
-    size_t end = str.find_last_not_of(" \t\r\n");
-    if (start == std::string::npos || end == std::string::npos) {
-        return "";
-    }
-    return str.substr(start, end - start + 1);
-}
-
-// Function for splitting a string into tokens
-std::vector<std::string> tokenize(const std::string& input, char delimiter) {
-    std::vector<std::string> tokens;
-    std::stringstream ss(input);
-    std::string token;
-    while (std::getline(ss, token, delimiter)) {
-        // Ignore comments begin with ;
-        size_t commentPos = token.find(';');
-        if (commentPos != std::string::npos) {
-            token = token.substr(0, commentPos);
-        }
-        // Remove unnecessary spaces
-        token = trim(token);
-        if (!token.empty()) {
-            tokens.push_back(token);
-        }
-    }
-    return tokens;
-}
-
-// Function for parsing a command
+///@brief Function for parsing a command by line
+///@param line is a single line of the code
 Command parseCommand(const std::string& line) {
     Command command;
     std::vector<std::string> tokens = tokenize(line, '\t');
@@ -60,7 +39,6 @@ Command parseCommand(const std::string& line) {
     } else [[unlikely]] {
         commandTokens = tokenize(tokens[0], ':');
     }
-
 
     if (!commandTokens.empty()) {
         command.name = commandTokens[0];
@@ -85,13 +63,12 @@ Command parseCommand(const std::string& line) {
             std::string result = commandTokens[0].substr(dotPos + 1);  // Extract the substring after the dot
             command.flag = (char) commandTokens[0].substr(dotPos + 1)[0];
         }
-
     }
-
     return command;
 }
 
-// Function for parsing code
+///@brief Function for parsing code
+///@param code it's source code written in Parse
 std::vector<Command> parseCode(const std::string& code) {
     std::vector<Command> commands;
     std::vector<std::string> lines = tokenize(code, '\n');
@@ -99,15 +76,47 @@ std::vector<Command> parseCode(const std::string& code) {
     for (const std::string& line : lines) {
         if (line.empty() || line[0] != '#') {
             if (line[0] == '@') [[unlikely]] {
-                goto pushBranch;
+                commands.push_back(parseCommand(line));
             }
             continue;
         }
-        pushBranch:
         commands.push_back(parseCommand(line));
+        size_t rpos = line.find("return");
+        size_t spos = line.find("stop");
+        if (rpos != std::string::npos || spos != std::string::npos) {
+            return commands;
+        }
     }
 
     return commands;
 }
 
-#endif //BINARYWRITER_IRPARSER_H
+///@brief Function for parsing code
+///@param code it's source code written in Parse
+///@param pos it's position in file or string from the beginning
+std::vector<Command> parseStream(const std::string &code, std::streampos pos) {
+    std::stringstream ss(code);
+    ss.seekg(pos);
+    std::vector<Command> commands;
+    std::string line;
+    while (std::getline(ss, line, '\n')) {
+        if (line.empty() || line[0] != '#') {
+            if (line[0] == '@') [[unlikely]] {
+                commands.push_back(parseCommand(line));
+                continue;
+            }
+            closeCompiler("function finished incorrectly(stop or ret missed)");
+        }
+        commands.push_back(parseCommand(line));
+        size_t rpos = line.find("ret");
+        size_t spos = line.find("stop");
+        if (rpos != std::string::npos || spos != std::string::npos) [[unlikely]] {
+            return commands;
+        }
+    }
+    return commands;
+}
+
+
+
+#endif //CLASSTEST_IRCOMMANDPARSER_H
