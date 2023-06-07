@@ -5,7 +5,7 @@ How to use IRParsedProgram:
 #include "IR/IRParsedProgram.h"
 
 int main() {
-    IRParsedProgram irProgram("/Users/kirillzhukov/Documents/TheiaIR/testFn.txt");
+    IRParsedProgram irProgram("testFn.txt");
     irProgram.printProgram(); // prints program in readeble format
     // iterating through the parsed program
     // func.command is a vector with parsed instructions
