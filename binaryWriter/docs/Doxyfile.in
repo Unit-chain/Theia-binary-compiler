@@ -11,6 +11,8 @@ PROJECT_LOGO           =
 OUTPUT_DIRECTORY       =
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = YES
+EXCLUDE                = */cmake-build-debug/*
+EXCLUDE               += */venv/*
 
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -208,7 +210,7 @@ PERLMOD_MAKEVAR_PREFIX =
 #---------------------------------------------------------------------------
 ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = NO
-EXPAND_ONLY_PREDEF     = NO
+EXPAND_ONLY_PREDEF     = YES
 SEARCH_INCLUDES        = YES
 INCLUDE_PATH           =
 INCLUDE_FILE_PATTERNS  =

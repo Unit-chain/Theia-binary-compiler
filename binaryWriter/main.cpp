@@ -1,13 +1,13 @@
 #include <iostream>
-#include "IR/Parse/IRParsedProgram.h"
+#include "IR/IRParsedProgram.h"
 
 
 int main() {
     // can be found in examples folder
-    IRParsedProgram irProgram("testFn.txt");
+    IRParsedProgram irProgram((char *) "testFn.txt");
     irProgram.printProgram();
-    for (IRFunction &func : irProgram) {
-        std::cout << func.name << std::endl;
+    for (auto& [funcName, func] : irProgram) {
+        std::cout << "Function name: " << funcName << ", Function name 2: " << func.name << std::endl;
     }
     return 0;
 }

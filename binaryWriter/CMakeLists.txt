@@ -5,8 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(
         IR
-        IR/Parse
-        IR/utils
+        utils
 )
 
 add_executable(
@@ -19,9 +18,9 @@ add_executable(
         BytecodeStream.cpp
         BytecodeStream.h
         Opcodes.h
-        IR/Parse/IRCommandParser.h
-        IR/Parse/IRFunctionParser.h
-        IR/Parse/IRParsedProgram.h
-        IR/utils/errutils.h
-        IR/utils/strutils.h
+        IR/IRCommandParser.h
+        IR/IRFunctionParser.h
+        IR/IRParsedProgram.h
+        utils/errutils.h
+        utils/strutils.h
 )

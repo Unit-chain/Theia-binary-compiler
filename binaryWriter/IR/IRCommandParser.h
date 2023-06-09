@@ -13,10 +13,10 @@
 #include "errutils.h"
 
 ///@struct Command
-///@brief Structure for Parse command representation
-///@var name - command name
-///@var args contains function arguments
-///@var command's condition flag
+///@brief Structure for IR command representation
+///@param name - command name
+///@param args contains function arguments
+///@param flag command's condition flag
 struct Command {
     std::string name;
     std::vector<std::string> args;
@@ -68,7 +68,7 @@ Command parseCommand(const std::string& line) {
 }
 
 ///@brief Function for parsing code
-///@param code it's source code written in Parse
+///@param code it's source code written in IR
 std::vector<Command> parseCode(const std::string& code) {
     std::vector<Command> commands;
     std::vector<std::string> lines = tokenize(code, '\n');
@@ -92,7 +92,7 @@ std::vector<Command> parseCode(const std::string& code) {
 }
 
 ///@brief Function for parsing code
-///@param code it's source code written in Parse
+///@param code it's source code written in IR
 ///@param pos it's position in file or string from the beginning
 std::vector<Command> parseStream(const std::string &code, std::streampos pos) {
     std::stringstream ss(code);

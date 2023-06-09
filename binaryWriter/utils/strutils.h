@@ -5,6 +5,7 @@
 #ifndef CLASSTEST_STRUTILS_H
 #define CLASSTEST_STRUTILS_H
 #include "string"
+#include "errutils.h"
 
 std::string trim(const std::string& str) {
     size_t start = str.find_first_not_of(" \t\r\n");
@@ -39,9 +40,10 @@ std::vector<std::string> tokenize(const std::string& input, char delimiter) {
 std::string getFnName(const std::string& input) {
     std::istringstream iss(input);
     std::string token;
-
     if (std::getline(iss, token, '(')) {
         return token;
+    } else {
+        closeCompiler("wrong function name");
     }
 }
 

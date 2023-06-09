@@ -8,8 +8,8 @@
 #include "IRFunctionParser.h"
 
 ///@class IRParsedProgram
-///@brief Parse parsed program
-///@var program it's parsed program
+///@brief IR parsed program
+///@param program it's parsed program
 class IRParsedProgram {
 public:
     ///@brief constructor which opens and reads data from file and after parse it
@@ -21,7 +21,7 @@ public:
 public:
     ///@brief returns IRFunction by index
     ///@param i - index
-    IRFunction at(uint64_t i);
+    IRFunction at(std::string &name);
     ///@brief returns quantity of functions
     size_t size();
     ///@brief prints program in readable format
@@ -33,7 +33,7 @@ public:
     ///Used in range-based for loop
     auto end();
 private:
-    std::vector<IRFunction> program;
+    std::unordered_map<std::string, IRFunction> program;
 };
 
 IRParsedProgram::IRParsedProgram(char *path) {
@@ -52,9 +52,9 @@ IRParsedProgram::IRParsedProgram(std::string &program) {
 }
 
 void IRParsedProgram::printProgram() {
-    for (auto &line : program) {
-        std::cout << "function name: " << line.name << ", offset: " << line.offset << "\ninstructions: " << '\n';
-        for (Command &command : line.commands) {
+    for (auto& [funcName, func] : program) {
+        std::cout << "function name: " << func.name << ", offset: " << func.offset << "\ninstructions: " << '\n';
+        for (Command &command : func.commands) {
             std::cout << "Command: " << command.name << ", flag: " << command.flag << std::endl;
             std::cout << "Arguments: \n";
             for (int i = 0; i < command.args.size(); i++) {
@@ -65,8 +65,8 @@ void IRParsedProgram::printProgram() {
     }
 }
 
-IRFunction IRParsedProgram::at(uint64_t i) {
-    return this->program.at(i);
+IRFunction IRParsedProgram::at(std::string &name) {
+    return this->program.at(name);
 }
 
 size_t IRParsedProgram::size() {
