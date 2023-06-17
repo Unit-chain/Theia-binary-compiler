@@ -23,4 +23,5 @@ add_executable(
         IR/IRParsedProgram.h
         utils/errutils.h
         utils/strutils.h
+        CFG/Graph.h
 )

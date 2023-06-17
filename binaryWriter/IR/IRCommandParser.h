@@ -12,6 +12,8 @@
 #include "strutils.h"
 #include "errutils.h"
 
+typedef unsigned char u1;
+
 ///@struct Command
 ///@brief Structure for IR command representation
 ///@param name - command name
@@ -57,11 +59,12 @@ Command parseCommand(const std::string& line) {
                 }
             }
         }
+        u1 dotPos = (u1) command.name.size() - 2;
 
-        std::size_t dotPos = commandTokens[0].find('.');
-        if (dotPos != std::string::npos && dotPos < commandTokens[0].length() - 1) [[unlikely]] {
-            std::string result = commandTokens[0].substr(dotPos + 1);  // Extract the substring after the dot
+        // check if symbol at N - 2 is '.'
+        if (command.name.at(dotPos) == 0x2E) [[unlikely]] {
             command.flag = (char) commandTokens[0].substr(dotPos + 1)[0];
+            command.name.erase(dotPos, 2);
         }
     }
     return command;

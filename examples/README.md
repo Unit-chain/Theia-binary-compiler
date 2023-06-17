@@ -9,7 +9,7 @@ int main() {
     irProgram.printProgram(); // prints program in readeble format
     // iterating through the parsed program
     // func.command is a vector with parsed instructions
-    for (IRFunction &func : irProgram) {
+    for (auto& [funcName, func] : irProgram) {
         std::cout << func.name << std::endl;
         // to iterate through instructions, need to use this:
         for (auto Command &c : func.commands) {
