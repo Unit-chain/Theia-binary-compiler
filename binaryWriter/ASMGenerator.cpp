@@ -2,7 +2,7 @@
 // Created by Kirill Zhukov on 21.05.2023.
 //
 #include "ASMGenerator.h"
-
+#define STACKSIZE 64
 ASMGenerator::ASMGenerator(char *path, BytecodeStream &bytecodeStream) : path(path), bs(bytecodeStream) {}
 
 ASMGenerator::~ASMGenerator() {}
@@ -431,10 +431,18 @@ void X86ASMGenerator::stop() {
 }
 
 void X86ASMGenerator::bl() {
+    buffer.append("\tjmp $+" + std::to_string(2) + "\n");
     return;
 }
 
 void X86ASMGenerator::swap_ref() {
+    uint8_t first = STACKSIZE * bs.readByte();
+    uint8_t second = STACKSIZE * bs.readByte();
+    //depends of size or registers might need to change e**(32 bits) and r**(64 bits)
+    buffer.append("\tmov rax, [rsp+" + std::to_string(first) + "]\n");
+    buffer.append("\tmov rbx, [rsp+" + std::to_string(second) + "]\n");
+    buffer.append("\tmov [rsp+" + std::to_string(first) + "], rbx\n");
+    buffer.append("\tmov [rsp+" + std::to_string(second) + "], rax\n");
     return;
 }
 
