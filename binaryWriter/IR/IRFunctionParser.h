@@ -5,6 +5,7 @@
 #ifndef CLASSTEST_IRFUNCTIONPARSER_H
 #define CLASSTEST_IRFUNCTIONPARSER_H
 
+#include "unordered_map"
 #include "iostream"
 #include "sstream"
 #include "strutils.h"
@@ -50,7 +51,7 @@ std::unordered_map<std::string, IRFunction> getFnLines(std::string &fileData) {
         if (!token.empty()) {
             std::vector<std::string> fnParams = tokenize(token, ' ');
             std::vector<Command> commands = parseStream(fileData, ss.tellg());
-            std::string fnName = getFnName(fnParams.at(fnParams.size()-1));
+            std::string fnName = getFnName(fnParams.at(fnParams.size() - 1));
             if (fnParams.size() < 3) [[likely]] {
                 tokens[fnName] = {
                     offset,
@@ -58,7 +59,8 @@ std::unordered_map<std::string, IRFunction> getFnLines(std::string &fileData) {
                     std::move(commands),
                     std::move(fnParams)
                 }; // thanks to LLVM and perfectly working "emplace_back" and allocate_at_least.h
-            } else {
+                }
+            else {
                 for (int i = 1; i < fnParams.size(); ++i) {
                     if (fnParams.at(i)[0] == '_') {
                         break;

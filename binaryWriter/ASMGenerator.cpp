@@ -13,281 +13,122 @@ void ARM64ASMGenerator::write() {
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
-            case(STOP):
+            case(0):
                 ARM64ASMGenerator::stop();
                 break;
-            case(BL):
+            case(1):
                 ARM64ASMGenerator::bl();
                 break;
-            case(SWAP_REF):
-                ARM64ASMGenerator::swap_ref();
-                break;
-            case(SWAP):
+            case(2):
                 ARM64ASMGenerator::swap();
                 break;
-            case(ADD):
+            case(3):
                 ARM64ASMGenerator::add();
                 break;
-            case(SUB):
+            case(4):
                 ARM64ASMGenerator::sub();
                 break;
-            case(DIV):
+            case(5):
                 ARM64ASMGenerator::div();
                 break;
-            case(MUL):
+            case(6):
                 ARM64ASMGenerator::mul();
                 break;
-            case(MOD):
+            case(7):
                 ARM64ASMGenerator::mod();
                 break;
-            case(OR):
+            case(8):
                 ARM64ASMGenerator::f_or();
                 break;
-            case(AND):
+            case(9):
                 ARM64ASMGenerator::f_and();
                 break;
-            case(XOR):
+            case(10):
                 ARM64ASMGenerator::f_xor();
                 break;
-            case(LSHIFT):
+            case(11):
                 ARM64ASMGenerator::lshift();
                 break;
-            case(RSHIFT):
+            case(12):
                 ARM64ASMGenerator::rshift();
                 break;
-            case(POP):
+            case(13):
                 ARM64ASMGenerator::pop();
                 break;
-            case(POP2):
+            case(14):
                 ARM64ASMGenerator::pop2();
                 break;
-            case(DUP):
+            case(15):
                 ARM64ASMGenerator::dup();
                 break;
-            case(VMCALL):
+            case(16):
                 ARM64ASMGenerator::vmcall();
                 break;
-            case(CNST_0):
+            case(17):
                 ARM64ASMGenerator::cnst_0();
                 break;
-            case(CNST_1):
+            case(18):
                 ARM64ASMGenerator::cnst_1();
                 break;
-            case(CNST_2):
+            case(19):
                 ARM64ASMGenerator::cnst_2();
                 break;
-            case(CNST_3):
+            case(20):
                 ARM64ASMGenerator::cnst_3();
                 break;
-            case(CNST_4):
+            case(21):
                 ARM64ASMGenerator::cnst_4();
                 break;
-            case(ASTOREA):
+            case(22):
                 ARM64ASMGenerator::astorea();
                 break;
-            case(ALOADA):
+            case(23):
                 ARM64ASMGenerator::aloada();
                 break;
-            case(STR):
+            case(24):
                 ARM64ASMGenerator::str();
                 break;
-            case(LDR):
+            case(25):
                 ARM64ASMGenerator::ldr();
                 break;
-            case(STRP):
+            case(26):
                 ARM64ASMGenerator::strp();
                 break;
-            case(CMP_EQ):
+            case(27):
                 ARM64ASMGenerator::cmp_eq();
                 break;
-            case(CMP_NE):
+            case(28):
                 ARM64ASMGenerator::cmp_ne();
                 break;
-            case(CMP_GE):
+            case(29):
                 ARM64ASMGenerator::cmp_ge();
                 break;
-            case(CMP_LE):
+            case(30):
                 ARM64ASMGenerator::cmp_le();
                 break;
-            case(CMP_GT):
+            case(31):
                 ARM64ASMGenerator::cmp_gt();
                 break;
-            case(CMP_LT):
+            case(32):
                 ARM64ASMGenerator::cmp_lt();
                 break;
-            case(NOP):
+            case(33):
                 ARM64ASMGenerator::nop();
                 break;
-            case(CALL):
+            case(34):
                 ARM64ASMGenerator::call();
                 break;
-            case(RET):
+            case(35):
                 ARM64ASMGenerator::ret();
                 break;
-            case(VIRTUALCALL):
+            case(36):
                 ARM64ASMGenerator::virtualcall();
                 break;
-            case(ALIGN):
+            case(37):
                 ARM64ASMGenerator::align();
                 break;
         }
     }
-}
-
-void ARM64ASMGenerator::stop() {
-    return;
-}
-
-void ARM64ASMGenerator::bl() {
-    return;
-}
-
-void ARM64ASMGenerator::swap_ref() {
-    return;
-}
-
-void ARM64ASMGenerator::swap() {
-    return;
-}
-
-void ARM64ASMGenerator::add() {
-    return;
-}
-
-void ARM64ASMGenerator::sub() {
-    return;
-}
-
-void ARM64ASMGenerator::div() {
-    return;
-}
-
-void ARM64ASMGenerator::mul() {
-    return;
-}
-
-void ARM64ASMGenerator::mod() {
-    return;
-}
-
-void ARM64ASMGenerator::f_or() {
-    return;
-}
-
-void ARM64ASMGenerator::f_and() {
-    return;
-}
-
-void ARM64ASMGenerator::f_xor() {
-    return;
-}
-
-void ARM64ASMGenerator::lshift() {
-    return;
-}
-
-void ARM64ASMGenerator::rshift() {
-    return;
-}
-
-void ARM64ASMGenerator::pop() {
-    return;
-}
-
-void ARM64ASMGenerator::pop2() {
-    return;
-}
-
-void ARM64ASMGenerator::dup() {
-    return;
-}
-
-void ARM64ASMGenerator::vmcall() {
-    return;
-}
-
-void ARM64ASMGenerator::cnst_0() {
-    return;
-}
-
-void ARM64ASMGenerator::cnst_1() {
-    return;
-}
-
-void ARM64ASMGenerator::cnst_2() {
-    return;
-}
-
-void ARM64ASMGenerator::cnst_3() {
-    return;
-}
-
-void ARM64ASMGenerator::cnst_4() {
-    return;
-}
-
-void ARM64ASMGenerator::astorea() {
-    return;
-}
-
-void ARM64ASMGenerator::aloada() {
-    return;
-}
-
-void ARM64ASMGenerator::str() {
-    return;
-}
-
-void ARM64ASMGenerator::ldr() {
-    return;
-}
-
-void ARM64ASMGenerator::strp() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_eq() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_ne() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_ge() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_le() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_gt() {
-    return;
-}
-
-void ARM64ASMGenerator::cmp_lt() {
-    return;
-}
-
-void ARM64ASMGenerator::nop() {
-    return;
-}
-
-void ARM64ASMGenerator::call() {
-    return;
-}
-
-void ARM64ASMGenerator::ret() {
-    return;
-}
-
-void ARM64ASMGenerator::virtualcall() {
-    return;
-}
-
-void ARM64ASMGenerator::align() {
-    return;
 }
 
 
@@ -297,295 +138,120 @@ void X86ASMGenerator::write() {
     while (this->bs.hasMoreBytes()) {
         uint8_t instruction = bs.readByte();
         switch (instruction) {
-            case(STOP):
+            case(0):
                 X86ASMGenerator::stop();
                 break;
-            case(BL):
+            case(1):
                 X86ASMGenerator::bl();
                 break;
-            case(SWAP_REF):
-                X86ASMGenerator::swap_ref();
-                break;
-            case(SWAP):
+            case(2):
                 X86ASMGenerator::swap();
                 break;
-            case(ADD):
+            case(3):
                 X86ASMGenerator::add();
                 break;
-            case(SUB):
+            case(4):
                 X86ASMGenerator::sub();
                 break;
-            case(DIV):
+            case(5):
                 X86ASMGenerator::div();
                 break;
-            case(MUL):
+            case(6):
                 X86ASMGenerator::mul();
                 break;
-            case(MOD):
+            case(7):
                 X86ASMGenerator::mod();
                 break;
-            case(OR):
+            case(8):
                 X86ASMGenerator::f_or();
                 break;
-            case(AND):
+            case(9):
                 X86ASMGenerator::f_and();
                 break;
-            case(XOR):
+            case(10):
                 X86ASMGenerator::f_xor();
                 break;
-            case(LSHIFT):
+            case(11):
                 X86ASMGenerator::lshift();
                 break;
-            case(RSHIFT):
+            case(12):
                 X86ASMGenerator::rshift();
                 break;
-            case(POP):
+            case(13):
                 X86ASMGenerator::pop();
                 break;
-            case(POP2):
+            case(14):
                 X86ASMGenerator::pop2();
                 break;
-            case(DUP):
+            case(15):
                 X86ASMGenerator::dup();
                 break;
-            case(VMCALL):
+            case(16):
                 X86ASMGenerator::vmcall();
                 break;
-            case(CNST_0):
+            case(17):
                 X86ASMGenerator::cnst_0();
                 break;
-            case(CNST_1):
+            case(18):
                 X86ASMGenerator::cnst_1();
                 break;
-            case(CNST_2):
+            case(19):
                 X86ASMGenerator::cnst_2();
                 break;
-            case(CNST_3):
+            case(20):
                 X86ASMGenerator::cnst_3();
                 break;
-            case(CNST_4):
+            case(21):
                 X86ASMGenerator::cnst_4();
                 break;
-            case(ASTOREA):
+            case(22):
                 X86ASMGenerator::astorea();
                 break;
-            case(ALOADA):
+            case(23):
                 X86ASMGenerator::aloada();
                 break;
-            case(STR):
+            case(24):
                 X86ASMGenerator::str();
                 break;
-            case(LDR):
+            case(25):
                 X86ASMGenerator::ldr();
                 break;
-            case(STRP):
+            case(26):
                 X86ASMGenerator::strp();
                 break;
-            case(CMP_EQ):
+            case(27):
                 X86ASMGenerator::cmp_eq();
                 break;
-            case(CMP_NE):
+            case(28):
                 X86ASMGenerator::cmp_ne();
                 break;
-            case(CMP_GE):
+            case(29):
                 X86ASMGenerator::cmp_ge();
                 break;
-            case(CMP_LE):
+            case(30):
                 X86ASMGenerator::cmp_le();
                 break;
-            case(CMP_GT):
+            case(31):
                 X86ASMGenerator::cmp_gt();
                 break;
-            case(CMP_LT):
+            case(32):
                 X86ASMGenerator::cmp_lt();
                 break;
-            case(NOP):
+            case(33):
                 X86ASMGenerator::nop();
                 break;
-            case(CALL):
+            case(34):
                 X86ASMGenerator::call();
                 break;
-            case(RET):
+            case(35):
                 X86ASMGenerator::ret();
                 break;
-            case(VIRTUALCALL):
+            case(36):
                 X86ASMGenerator::virtualcall();
                 break;
-            case(ALIGN):
+            case(37):
                 X86ASMGenerator::align();
                 break;
         }
     }
-}
-
-void X86ASMGenerator::stop() {
-#if defined(_WIN32)
-    buffer.append("\txor rax, rax\n"
-        "\tcall ExitProcess\n");
-#elif defined(__linux__)
-    buffer.append("\tmov eax, 0x60\n"
-        "\txor edi, edi\n"
-        "\tsyscall\n")
-#endif
-        return;
-}
-
-void X86ASMGenerator::bl() {
-    buffer.append("\tjmp $+" + std::to_string(2) + "\n");
-    return;
-}
-
-void X86ASMGenerator::swap_ref() {
-    uint8_t first = STACKSIZE * bs.readByte();
-    uint8_t second = STACKSIZE * bs.readByte();
-    //depends of size or registers might need to change e**(32 bits) and r**(64 bits)
-    buffer.append("\tmov rax, [rsp+" + std::to_string(first) + "]\n");
-    buffer.append("\tmov rbx, [rsp+" + std::to_string(second) + "]\n");
-    buffer.append("\tmov [rsp+" + std::to_string(first) + "], rbx\n");
-    buffer.append("\tmov [rsp+" + std::to_string(second) + "], rax\n");
-    return;
-}
-
-void X86ASMGenerator::swap() {
-    return;
-}
-
-void X86ASMGenerator::add() {
-    return;
-}
-
-void X86ASMGenerator::sub() {
-    return;
-}
-
-void X86ASMGenerator::div() {
-    return;
-}
-
-void X86ASMGenerator::mul() {
-    return;
-}
-
-void X86ASMGenerator::mod() {
-    return;
-}
-
-void X86ASMGenerator::f_or() {
-    return;
-}
-
-void X86ASMGenerator::f_and() {
-    return;
-}
-
-void X86ASMGenerator::f_xor() {
-    return;
-}
-
-void X86ASMGenerator::lshift() {
-    return;
-}
-
-void X86ASMGenerator::rshift() {
-    return;
-}
-
-void X86ASMGenerator::pop() {
-    return;
-}
-
-void X86ASMGenerator::pop2() {
-    return;
-}
-
-void X86ASMGenerator::dup() {
-    return;
-}
-
-void X86ASMGenerator::vmcall() {
-    return;
-}
-
-void X86ASMGenerator::cnst_0() {
-    return;
-}
-
-void X86ASMGenerator::cnst_1() {
-    return;
-}
-
-void X86ASMGenerator::cnst_2() {
-    return;
-}
-
-void X86ASMGenerator::cnst_3() {
-    return;
-}
-
-void X86ASMGenerator::cnst_4() {
-    return;
-}
-
-void X86ASMGenerator::astorea() {
-    return;
-}
-
-void X86ASMGenerator::aloada() {
-    return;
-}
-
-void X86ASMGenerator::str() {
-    return;
-}
-
-void X86ASMGenerator::ldr() {
-    return;
-}
-
-void X86ASMGenerator::strp() {
-    return;
-}
-
-void X86ASMGenerator::cmp_eq() {
-    return;
-}
-
-void X86ASMGenerator::cmp_ne() {
-    return;
-}
-
-void X86ASMGenerator::cmp_ge() {
-    return;
-}
-
-void X86ASMGenerator::cmp_le() {
-    return;
-}
-
-void X86ASMGenerator::cmp_gt() {
-    return;
-}
-
-void X86ASMGenerator::cmp_lt() {
-    return;
-}
-
-void X86ASMGenerator::nop() {
-    return;
-}
-
-void X86ASMGenerator::call() {
-    return;
-}
-
-void X86ASMGenerator::ret() {
-    return;
-}
-
-void X86ASMGenerator::virtualcall() {
-    return;
-}
-
-void X86ASMGenerator::align() {
-    return;
 }

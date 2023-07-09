@@ -7,7 +7,7 @@
 #include "string"
 #include "errutils.h"
 
-std::string trim(const std::string& str) {
+std::string trim(const std::string &str) {
     size_t start = str.find_first_not_of(" \t\r\n");
     size_t end = str.find_last_not_of(" \t\r\n");
     if (start == std::string::npos || end == std::string::npos) {
@@ -17,7 +17,7 @@ std::string trim(const std::string& str) {
 }
 
 // Function for splitting a string into tokens
-std::vector<std::string> tokenize(const std::string& input, char delimiter) {
+std::vector<std::string> tokenize(const std::string &input, char delimiter) {
     std::vector<std::string> tokens;
     std::stringstream ss(input);
     std::string token;
@@ -37,12 +37,13 @@ std::vector<std::string> tokenize(const std::string& input, char delimiter) {
 }
 
 // takes name from function line
-std::string getFnName(const std::string& input) {
+std::string getFnName(const std::string &input) {
     std::istringstream iss(input);
     std::string token;
     if (std::getline(iss, token, '(')) {
         return token;
-    } else {
+    }
+    else {
         closeCompiler("wrong function name");
     }
 }

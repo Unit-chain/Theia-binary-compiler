@@ -41,10 +41,14 @@ IRParsedProgram::IRParsedProgram(char *path) {
     fseek(fp, SEEK_SET, SEEK_END);
     size_t fs = ftell(fp);
     fseek(fp, SEEK_SET, 0);
-    char buff[fs];
+    char *buff = static_cast<char *>(std::malloc(fs));
+    if (buff == nullptr) {
+        throw std::exception("null ptr exception");
+    }
     fread(buff, fs, 1, fp);
-    std::string str(buff);
+    std::string str(buff, fs);
     this->program = getFnLines(str);
+    std::free(buff);
 }
 
 IRParsedProgram::IRParsedProgram(std::string &program) {
@@ -52,7 +56,7 @@ IRParsedProgram::IRParsedProgram(std::string &program) {
 }
 
 void IRParsedProgram::printProgram() {
-    for (auto& [funcName, func] : program) {
+    for (auto &[funcName, func] : program) {
         std::cout << "function name: " << func.name << ", offset: " << func.offset << "\ninstructions: " << '\n';
         for (Command &command : func.commands) {
             std::cout << "Command: " << command.name << ", flag: " << command.flag << std::endl;
