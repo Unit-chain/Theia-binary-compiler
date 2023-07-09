@@ -131,6 +131,158 @@ void ARM64ASMGenerator::write() {
     }
 }
 
+ALWAYS_INLINE void ARM64ASMGenerator::stop() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::bl() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::swap() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::add() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::sub() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::div() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::mul() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::mod() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::f_or() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::f_and() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::f_xor() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::lshift() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::rshift() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::pop() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::pop2() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::dup() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::vmcall() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cnst_0() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cnst_2() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cnst_3() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cnst_4() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::astorea() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::aloada() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::str() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::ldr() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::strp() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_eq() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_ne() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_ge() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_le() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_gt() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::cmp_lt() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::nop() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::call() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::ret() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::virtualcall() {
+    return;
+}
+
+ALWAYS_INLINE void ARM64ASMGenerator::align() {
+    return;
+}
+
 
 X86ASMGenerator::X86ASMGenerator(char *path, BytecodeStream &bytecodeStream) : ASMGenerator(path, bytecodeStream) {}
 
@@ -254,4 +406,156 @@ void X86ASMGenerator::write() {
                 break;
         }
     }
+}
+
+ALWAYS_INLINE void X86ASMGenerator::stop() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::bl() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::swap() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::add() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::sub() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::div() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::mul() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::mod() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::f_or() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::f_and() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::f_xor() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::lshift() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::rshift() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::pop() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::pop2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::dup() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::vmcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cnst_0() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cnst_1() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cnst_2() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cnst_3() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cnst_4() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::astorea() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::aloada() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::str() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ldr() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::strp() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_eq() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_ne() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_ge() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_le() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_gt() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::cmp_lt() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::nop() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::call() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::ret() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::virtualcall() {
+    return;
+}
+
+ALWAYS_INLINE void X86ASMGenerator::align() {
+    return;
 }

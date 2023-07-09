@@ -77,34 +77,5 @@ namespace theiaIR {
                 {"align",       {.args = 1, .index = 37}}
         };
     };
-
-    bool Opcodes::containsOpcode(Command &cmd) {
-        if (validateCommand(cmd)) {
-            return this->op.contains(cmd.name);
-        }
-        closeCompiler("Invalid command found");
-    }
-
-    u1 Opcodes::getIndexByCommand(Command &cmd) {
-        if (validateCommand(cmd)) {
-            return this->op.at(cmd.name).index;
-        }
-        closeCompiler("Invalid command found");
-    }
-
-    ReferenceOpcode Opcodes::getReferenceCommand(std::string &cmdName) {
-        return this->op.at(cmdName);
-    }
-
-    bool Opcodes::validateCommand(Command &cmd) {
-        ReferenceOpcode opcode = this->op.at(cmd.name);
-        if ((cmd.args.size() == opcode.args) && ((cmd.flag == opcode.allowedFlags) || (cmd.flag == '\0'))) [[likely]] {
-            return true;
-            }
-        else [[unlikely]] {
-            return false;
-            }
-    }
 }
-
 #endif //BINARYWRITER_OPCODES_H
