@@ -12,16 +12,13 @@ add_executable(
         binaryWriter
         main.cpp
         SystemIdentifier.cpp
-        SystemIdentifier.h
-        ASMGenerator.h
         ASMGenerator.cpp
         BytecodeStream.cpp
-        BytecodeStream.h
-        Opcodes.h
-        IR/IRCommandParser.h
-        IR/IRFunctionParser.h
-        IR/IRParsedProgram.h
-        utils/errutils.h
-        utils/strutils.h
-        CFG/Graph.h
+        Opcodes.cpp
+        IR/IRCommandParser.cpp
+        IR/IRFunctionParser.cpp
+        IR/IRParsedProgram.cpp
+        utils/errutils.cpp
+        utils/strutils.cpp
+        CFG/Graph.cpp
 )
