@@ -35,8 +35,7 @@ std::string getFnName(const std::string &input) {
     std::string token;
     if (std::getline(iss, token, '(')) {
         return token;
-    }
-    else {
+    } else {
         closeCompiler("wrong function name");
     }
 }

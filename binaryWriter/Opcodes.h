@@ -4,6 +4,7 @@
 
 #ifndef BINARYWRITER_OPCODES_H
 #define BINARYWRITER_OPCODES_H
+
 #include "unordered_map"
 #include "IR/IRCommandParser.h"
 

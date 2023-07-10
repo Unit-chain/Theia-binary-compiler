@@ -39,5 +39,4 @@ std::vector<Command> parseCode(const std::string &code);
 std::vector<Command> parseStream(const std::string &code, std::streampos pos);
 
 
-
 #endif //CLASSTEST_IRCOMMANDPARSER_H

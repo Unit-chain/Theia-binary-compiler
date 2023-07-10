@@ -43,9 +43,9 @@ std::unordered_map<std::string, IRFunction>::iterator IRParsedProgram::end() {
 }
 
 void IRParsedProgram::printProgram() {
-    for (auto &[funcName, func] : program) {
+    for (auto &[funcName, func]: program) {
         std::cout << "function name: " << func.name << ", offset: " << func.offset << "\ninstructions: " << '\n';
-        for (Command &command : func.commands) {
+        for (Command &command: func.commands) {
             std::cout << "Command: " << command.name << ", flag: " << command.flag << std::endl;
             std::cout << "Arguments: \n";
             for (int i = 0; i < command.args.size(); i++) {

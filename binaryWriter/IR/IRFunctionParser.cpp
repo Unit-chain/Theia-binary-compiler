@@ -35,13 +35,12 @@ std::unordered_map<std::string, IRFunction> getFnLines(std::string &fileData) {
             std::string fnName = getFnName(fnParams.at(fnParams.size() - 1));
             if (fnParams.size() < 3) [[likely]] {
                 tokens[fnName] = {
-                    offset,
-                    fnName,
-                    std::move(commands),
-                    std::move(fnParams)
+                        offset,
+                        fnName,
+                        std::move(commands),
+                        std::move(fnParams)
                 }; // thanks to LLVM and perfectly working "emplace_back" and allocate_at_least.h
-                }
-            else {
+            } else {
                 for (int i = 1; i < fnParams.size(); ++i) {
                     if (fnParams.at(i)[0] == '_') {
                         break;
@@ -49,10 +48,10 @@ std::unordered_map<std::string, IRFunction> getFnLines(std::string &fileData) {
                     fnParams.push_back(fnParams.at(i));
                 }
                 tokens[fnName] = {
-                    offset,
-                    fnName,
-                    std::move(commands),
-                    std::move(fnParams)
+                        offset,
+                        fnName,
+                        std::move(commands),
+                        std::move(fnParams)
                 };
             }
         }

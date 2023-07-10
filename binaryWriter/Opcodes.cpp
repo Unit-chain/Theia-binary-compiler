@@ -25,8 +25,7 @@ bool theiaIR::Opcodes::validateCommand(Command &cmd) {
     theiaIR::ReferenceOpcode opcode = this->op.at(cmd.name);
     if ((cmd.args.size() == opcode.args) && ((cmd.flag == opcode.allowedFlags) || (cmd.flag == '\0'))) [[likely]] {
         return true;
-        }
-    else [[unlikely]] {
+    } else [[unlikely]] {
         return false;
-        }
+    }
 }

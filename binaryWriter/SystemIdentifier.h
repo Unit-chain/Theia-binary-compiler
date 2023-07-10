@@ -4,6 +4,7 @@
 
 #ifndef BINARYWRITER_SYSTEMIDENTIFIER_H
 #define BINARYWRITER_SYSTEMIDENTIFIER_H
+
 #include "string"
 #include "iostream"
 
@@ -12,6 +13,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+
 #define ALWAYS_INLINE __attribute__((always_inline))
 
 #elif defined(__linux__)
@@ -28,16 +30,16 @@
 typedef unsigned char uchar;
 
 enum OSFlag : uchar {
-      LINUX = 0x01,
-      MACOS = 0x02,
+    LINUX = 0x01,
+    MACOS = 0x02,
     WINDOWS = 0x03,
     UNKNOWN = 0x04
 };
 
 enum CPUFlag : uchar {
-     ARM64 = 0x10,
+    ARM64 = 0x10,
     X86_64 = 0x20,
-      X86S = 0x30, // Not implemented yet by Intel
+    X86S = 0x30, // Not implemented yet by Intel
 };
 
 static inline OSFlag getOS(uchar symbol) {
@@ -51,10 +53,12 @@ static inline CPUFlag getCPU(uchar symbol) {
 class SystemIdentifier {
 public:
     explicit SystemIdentifier();
+
 public:
     uchar system;
 public:
-    SystemIdentifier& operator=(const SystemIdentifier& other);
+    SystemIdentifier &operator=(const SystemIdentifier &other);
+
 private:
     static CPUFlag getProcessorArchitecture();
 };

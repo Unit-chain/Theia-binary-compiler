@@ -4,6 +4,7 @@
 
 #ifndef CLASSTEST_ERRUTILS_H
 #define CLASSTEST_ERRUTILS_H
+
 #include "iostream"
 
 ///@brief

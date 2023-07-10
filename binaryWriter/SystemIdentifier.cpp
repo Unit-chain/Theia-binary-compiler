@@ -7,15 +7,15 @@
 
 SystemIdentifier::SystemIdentifier() {
     OSFlag os;
-    #ifdef _WIN32
-        os = WINDOWS;
-    #elif __APPLE__
-        os = MACOS;
-    #elif __linux__
-        os = LINUX;
-    #else
-        os = UNKNOWN;
-    #endif
+#ifdef _WIN32
+    os = WINDOWS;
+#elif __APPLE__
+    os = MACOS;
+#elif __linux__
+    os = LINUX;
+#else
+    os = UNKNOWN;
+#endif
     this->system = static_cast<uchar>(os) | static_cast<uchar>(getProcessorArchitecture());
 }
 
@@ -23,7 +23,9 @@ CPUFlag SystemIdentifier::getProcessorArchitecture() {
 #if defined(_WIN32)
     return X86_64;
 #elif defined(__APPLE__) && defined(__MACH__)
+
 #include <sys/sysctl.h>
+
     size_t len = 0;
     sysctlbyname("hw.machine", NULL, &len, NULL, 0);
     char *machine = new char[len];
@@ -51,7 +53,7 @@ CPUFlag SystemIdentifier::getProcessorArchitecture() {
 #endif
 }
 
-SystemIdentifier& SystemIdentifier::operator=(const SystemIdentifier& other) {
+SystemIdentifier &SystemIdentifier::operator=(const SystemIdentifier &other) {
     if (this != &other) {
         this->system = other.system;
     }
